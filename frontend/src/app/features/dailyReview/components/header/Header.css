@@ -1,0 +1,96 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  padding-bottom: 50px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.btn-primary {
+  margin-right: 10px; /* Adjust the margin as needed */
+}
+
+.btn-secondary{
+  margin-right: 10px; 
+}
+
+.upload-btn {
+  background-color: #3498db; /* Blue color */
+  border-color: #3498db; /* Blue color */
+  color: #fff; /* White color */
+}
+
+.show-files-btn {
+  background-color: #2ecc71; /* Green color */
+  border-color: #2ecc71; /* Green color */
+  color: #fff; /* White color */
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  background-color: rgb(48, 48, 48);
+  padding: 3px 10px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.header a {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+.header a.logo {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.header a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
+.header-right {
+  float: right;
+}
+
+.content {
+  margin-top: 5px; /* Adjusted to accommodate fixed header */
+  padding: 5px;
+  margin-bottom: 20px;
+}
+
+.logo img {
+  width: 50px; 
+  height: auto; /* Maintain aspect ratio */
+  margin-right: 10px; /* some margin between the logo and text */
+}
+
+.tab-link {
+  text-decoration: none;
+  color: #fff;
+  padding: 10px;
+  margin: 0 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+  order: -1; /* Move the tab-link to the left */
+}

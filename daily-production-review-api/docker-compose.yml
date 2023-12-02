@@ -1,0 +1,17 @@
+version: "3"
+services:
+  fastapi-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./scheduler/scheduler_result:/app/scheduler/scheduler_result
+    environment:
+      - FASTAPI_APP_ENV=production
+      - XML_FOLDER_PATH=scheduler/scheduler_result
+      - PORT=8000
+
+volumes:
+  storage_result:

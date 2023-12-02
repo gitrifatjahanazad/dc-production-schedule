@@ -1,0 +1,3 @@
+pytz
+requests
+schedule==1.2.1

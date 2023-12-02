@@ -1,0 +1,6 @@
+fastapi==0.99.1
+uvicorn==0.15.0
+xmltodict==0.13.0
+fastapi-cors==0.0.6
+typing_extensions==4.7.1
+fastapi-microsoft-identity==0.1.6

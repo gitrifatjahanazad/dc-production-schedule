@@ -1,0 +1,12 @@
+version: '3'
+services:
+  my-python-app:
+    build:
+      context: .
+      dockerfile: Dockerfile  # Specify the path to your Dockerfile
+    container_name: scheduler-container
+    restart: always
+    command: python scheduler.py  # Specify the command to run your Python script
+    volumes:
+      - ./log:/app/log  # Mount a volume for log files
+      - ./scheduler_result:/app/scheduler_result  # Mount a volume for scheduler-related files

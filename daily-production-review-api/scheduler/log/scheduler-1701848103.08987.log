@@ -1,0 +1,61 @@
+2023-12-06 07:35:03,099 [INFO] - Scheduler started...
+2023-12-06 07:36:03,189 [DEBUG] - Running job Job(interval=1, unit=minutes, do=job, args=(), kwargs={})
+2023-12-06 07:36:03,235 [INFO] - Running the API call job...
+2023-12-06 07:36:03,300 [DEBUG] - Starting new HTTPS connection (1): orders.crusadercaravans.com.au:443
+2023-12-06 07:36:08,403 [DEBUG] - https://orders.crusadercaravans.com.au:443 "POST /ScheduleFeed.asmx HTTP/1.1" 200 573894
+2023-12-06 07:36:09,421 [INFO] - API call successful
+2023-12-06 07:36:09,494 [INFO] - API response saved to ./scheduler_result/api_response_2023-12-06T07-36-09-440769+00-00.xml
+2023-12-06 07:37:09,573 [DEBUG] - Running job Job(interval=1, unit=minutes, do=job, args=(), kwargs={})
+2023-12-06 07:37:09,577 [INFO] - Running the API call job...
+2023-12-06 07:37:09,579 [DEBUG] - Starting new HTTPS connection (1): orders.crusadercaravans.com.au:443
+2023-12-06 07:37:14,428 [DEBUG] - https://orders.crusadercaravans.com.au:443 "POST /ScheduleFeed.asmx HTTP/1.1" 200 573894
+2023-12-06 07:37:15,261 [INFO] - API call successful
+2023-12-06 07:37:15,288 [INFO] - API response saved to ./scheduler_result/api_response_2023-12-06T07-37-15-262969+00-00.xml
+2023-12-06 07:38:15,369 [DEBUG] - Running job Job(interval=1, unit=minutes, do=job, args=(), kwargs={})
+2023-12-06 07:38:15,374 [INFO] - Running the API call job...
+2023-12-06 07:38:15,378 [DEBUG] - Starting new HTTPS connection (1): orders.crusadercaravans.com.au:443
+2023-12-06 07:38:20,313 [DEBUG] - https://orders.crusadercaravans.com.au:443 "POST /ScheduleFeed.asmx HTTP/1.1" 200 573894
+2023-12-06 07:38:21,013 [INFO] - API call successful
+2023-12-06 07:38:21,031 [INFO] - API response saved to ./scheduler_result/api_response_2023-12-06T07-38-21-014845+00-00.xml
+2023-12-06 07:39:21,108 [DEBUG] - Running job Job(interval=1, unit=minutes, do=job, args=(), kwargs={})
+2023-12-06 07:39:21,113 [INFO] - Running the API call job...
+2023-12-06 07:39:21,117 [DEBUG] - Starting new HTTPS connection (1): orders.crusadercaravans.com.au:443
+2023-12-06 07:39:25,845 [DEBUG] - https://orders.crusadercaravans.com.au:443 "POST /ScheduleFeed.asmx HTTP/1.1" 200 573894
+2023-12-06 07:39:26,719 [INFO] - API call successful
+2023-12-06 07:39:26,735 [INFO] - API response saved to ./scheduler_result/api_response_2023-12-06T07-39-26-721009+00-00.xml
+2023-12-06 07:40:26,816 [DEBUG] - Running job Job(interval=1, unit=minutes, do=job, args=(), kwargs={})
+2023-12-06 07:40:26,821 [INFO] - Running the API call job...
+2023-12-06 07:40:26,826 [DEBUG] - Starting new HTTPS connection (1): orders.crusadercaravans.com.au:443
+2023-12-06 07:40:31,536 [DEBUG] - https://orders.crusadercaravans.com.au:443 "POST /ScheduleFeed.asmx HTTP/1.1" 200 573894
+2023-12-06 07:40:32,270 [INFO] - API call successful
+2023-12-06 07:40:32,293 [INFO] - API response saved to ./scheduler_result/api_response_2023-12-06T07-40-32-271955+00-00.xml
+2023-12-06 07:41:32,372 [DEBUG] - Running job Job(interval=1, unit=minutes, do=job, args=(), kwargs={})
+2023-12-06 07:41:32,376 [INFO] - Running the API call job...
+2023-12-06 07:41:32,381 [DEBUG] - Starting new HTTPS connection (1): orders.crusadercaravans.com.au:443
+2023-12-06 07:41:37,427 [DEBUG] - https://orders.crusadercaravans.com.au:443 "POST /ScheduleFeed.asmx HTTP/1.1" 200 573894
+2023-12-06 07:41:38,102 [INFO] - API call successful
+2023-12-06 07:41:38,115 [INFO] - API response saved to ./scheduler_result/api_response_2023-12-06T07-41-38-103831+00-00.xml
+2023-12-06 07:42:38,193 [DEBUG] - Running job Job(interval=1, unit=minutes, do=job, args=(), kwargs={})
+2023-12-06 07:42:38,197 [INFO] - Running the API call job...
+2023-12-06 07:42:38,202 [DEBUG] - Starting new HTTPS connection (1): orders.crusadercaravans.com.au:443
+2023-12-06 07:42:42,995 [DEBUG] - https://orders.crusadercaravans.com.au:443 "POST /ScheduleFeed.asmx HTTP/1.1" 200 573894
+2023-12-06 07:42:43,722 [INFO] - API call successful
+2023-12-06 07:42:43,780 [INFO] - API response saved to ./scheduler_result/api_response_2023-12-06T07-42-43-729596+00-00.xml
+2023-12-06 07:43:43,856 [DEBUG] - Running job Job(interval=1, unit=minutes, do=job, args=(), kwargs={})
+2023-12-06 07:43:43,860 [INFO] - Running the API call job...
+2023-12-06 07:43:43,864 [DEBUG] - Starting new HTTPS connection (1): orders.crusadercaravans.com.au:443
+2023-12-06 07:43:48,605 [DEBUG] - https://orders.crusadercaravans.com.au:443 "POST /ScheduleFeed.asmx HTTP/1.1" 200 573894
+2023-12-06 07:43:49,675 [INFO] - API call successful
+2023-12-06 07:43:49,690 [INFO] - API response saved to ./scheduler_result/api_response_2023-12-06T07-43-49-677067+00-00.xml
+2023-12-06 07:44:49,764 [DEBUG] - Running job Job(interval=1, unit=minutes, do=job, args=(), kwargs={})
+2023-12-06 07:44:49,766 [INFO] - Running the API call job...
+2023-12-06 07:44:49,768 [DEBUG] - Starting new HTTPS connection (1): orders.crusadercaravans.com.au:443
+2023-12-06 07:44:54,595 [DEBUG] - https://orders.crusadercaravans.com.au:443 "POST /ScheduleFeed.asmx HTTP/1.1" 200 573894
+2023-12-06 07:44:55,449 [INFO] - API call successful
+2023-12-06 07:44:55,486 [INFO] - API response saved to ./scheduler_result/api_response_2023-12-06T07-44-55-466835+00-00.xml
+2023-12-06 07:45:55,567 [DEBUG] - Running job Job(interval=1, unit=minutes, do=job, args=(), kwargs={})
+2023-12-06 07:45:55,571 [INFO] - Running the API call job...
+2023-12-06 07:45:55,574 [DEBUG] - Starting new HTTPS connection (1): orders.crusadercaravans.com.au:443
+2023-12-06 07:46:00,419 [DEBUG] - https://orders.crusadercaravans.com.au:443 "POST /ScheduleFeed.asmx HTTP/1.1" 200 573894
+2023-12-06 07:46:01,470 [INFO] - API call successful
+2023-12-06 07:46:01,489 [INFO] - API response saved to ./scheduler_result/api_response_2023-12-06T07-46-01-471777+00-00.xml

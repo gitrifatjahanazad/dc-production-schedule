@@ -1,0 +1,44 @@
+.orders-container{
+    height: 85%;
+}
+.order-items{
+    height: 100%;
+    overflow-y: auto;
+}
+
+.order-table-header{
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: white;
+    margin-bottom: 10px;
+  }
+    
+  .order-table{
+    max-height: 500px;
+    overflow-y: AUTO;
+  }
+  
+  .order-table-row, .order-table-header {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  .order-table-body .order-table-row:nth-child(odd) {
+    background-color: #f2f2f2;
+  }
+  .order-table-row{
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .description-cross{
+    text-decoration: line-through;
+  }
+  .option-dropdown, .option-input{
+    background-color: #b6b4d7 !important;
+    border-color: #6c757d !important;
+  }
+  .optoin-textbox-remove-btn{
+    background-color: #b6b4d7 !important;
+  }

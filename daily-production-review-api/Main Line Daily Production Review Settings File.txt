@@ -1,0 +1,19 @@
+Production target per day:
+Monday: 7
+Tuesday: 7
+Wednesday: 7
+Thursday: 6
+Friday: 6
+
+Job Progress per Station: 1 mins
+
+Wall prep = Start No. + 5
+Roofs = Floor & Lino Assembly
+Doors = Start No. - 7
+Furniture = Start No. + 9
+CNC = Start No. + 13
+
+Main Line Daily Production Schedule Excel Path:
+E:\bss\python_proj\DailyProductionReview\Copy of Crusader Schedule -Version 6.xlsx
+
+File save at: 00:00:00
