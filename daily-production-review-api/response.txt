@@ -1,74 +1,42 @@
-{'station_name': '06 WALLS ASSEMBLY', 'chassisNo': 13919, 'model': 'WARRIOR', 'dealer': 'ALBURY RV'}
-{'station_name': '06 WALLS ASSEMBLY', 'chassisNo': 13920, 'model': 'CAMELOT', 'dealer': 'ALBURY RV'}
-{'station_name': '06 WALLS ASSEMBLY', 'chassisNo': 13888, 'model': 'PRINCE', 'dealer': 'LEWIS RV'}
-{'station_name': '06 WALLS ASSEMBLY', 'chassisNo': 12529, 'model': 'SERENITY', 'dealer': 'CAMERONS'}
-{'station_name': '06 WALLS ASSEMBLY', 'chassisNo': 12533, 'model': 'SERENITY', 'dealer': 'CARAVANA RV'}
-{'station_name': '06 WALLS ASSEMBLY', 'chassisNo': 13919, 'model': 'WARRIOR', 'dealer': 'ALBURY RV'}
-{'station_name': '06 WALLS ASSEMBLY', 'chassisNo': 13920, 'model': 'CAMELOT', 'dealer': 'ALBURY RV'}
-{'station_name': '06 WALLS ASSEMBLY', 'chassisNo': 13888, 'model': 'PRINCE', 'dealer': 'LEWIS RV'}
-{'station_name': '06 WALLS ASSEMBLY', 'chassisNo': 12529, 'model': 'SERENITY', 'dealer': 'CAMERONS'}
-{'station_name': '06 WALLS ASSEMBLY', 'chassisNo': 12533, 'model': 'SERENITY', 'dealer': 'CARAVANA RV'}
-{'station_name': '05 ELECTRICAL 240V', 'chassisNo': 12537, 'model': 'EXTREME', 'dealer': 'CARAVANA RV'}
-{'station_name': '05 ELECTRICAL 240V', 'chassisNo': 12502, 'model': 'TREVILLE', 'dealer': 'CAMERONS'}
-{'station_name': '05 ELECTRICAL 240V', 'chassisNo': 12620, 'model': 'EXTREME', 'dealer': 'CRUSADER RV'}
-{'station_name': '05 ELECTRICAL 240V', 'chassisNo': 12632, 'model': 'TRAILBREAKER', 'dealer': 'BENDIGO CRUS'}
-{'station_name': '05 ELECTRICAL 240V', 'chassisNo': 12562, 'model': 'DUKE', 'dealer': 'ALBURY RV'}
-{'station_name': '05 ELECTRICAL 240V', 'chassisNo': 12595, 'model': 'EXTREME', 'dealer': 'ALBURY RV'}
-{'station_name': '05 ELECTRICAL 240V', 'chassisNo': 12537, 'model': 'EXTREME', 'dealer': 'CARAVANA RV'}
-{'station_name': '05 ELECTRICAL 240V', 'chassisNo': 12502, 'model': 'TREVILLE', 'dealer': 'CAMERONS'}
-{'station_name': '05 ELECTRICAL 240V', 'chassisNo': 12620, 'model': 'EXTREME', 'dealer': 'CRUSADER RV'}
-{'station_name': '05 ELECTRICAL 240V', 'chassisNo': 12632, 'model': 'TRAILBREAKER', 'dealer': 'BENDIGO CRUS'}
-{'station_name': '05 ELECTRICAL 240V', 'chassisNo': 12562, 'model': 'DUKE', 'dealer': 'ALBURY RV'}
-{'station_name': '05 ELECTRICAL 240V', 'chassisNo': 12595, 'model': 'EXTREME', 'dealer': 'ALBURY RV'}
-{'station_name': '04 ELECTRICAL 12V', 'chassisNo': 13889, 'model': 'SERENITY', 'dealer': 'LEWIS RV'}
-{'station_name': '04 ELECTRICAL 12V', 'chassisNo': 13890, 'model': 'DUKE', 'dealer': 'LEWIS RV'}
-{'station_name': '04 ELECTRICAL 12V', 'chassisNo': 13891, 'model': 'TREVILLE', 'dealer': 'LEWIS RV'}
-{'station_name': '04 ELECTRICAL 12V', 'chassisNo': 13921, 'model': 'PRINCE', 'dealer': 'ALBURY RV'}
-{'station_name': '04 ELECTRICAL 12V', 'chassisNo': 13922, 'model': 'EXTREME', 'dealer': 'ALBURY RV'}
-{'station_name': '04 ELECTRICAL 12V', 'chassisNo': 13909, 'model': 'CENTAUR', 'dealer': 'CAMERONS'}
-{'station_name': '04 ELECTRICAL 12V', 'chassisNo': 13910, 'model': 'PORTHOS', 'dealer': 'CAMERONS'}
-{'station_name': '04 ELECTRICAL 12V', 'chassisNo': 13889, 'model': 'SERENITY', 'dealer': 'LEWIS RV'}
-{'station_name': '04 ELECTRICAL 12V', 'chassisNo': 13890, 'model': 'DUKE', 'dealer': 'LEWIS RV'}
-{'station_name': '04 ELECTRICAL 12V', 'chassisNo': 13891, 'model': 'TREVILLE', 'dealer': 'LEWIS RV'}
-{'station_name': '04 ELECTRICAL 12V', 'chassisNo': 13921, 'model': 'PRINCE', 'dealer': 'ALBURY RV'}
-{'station_name': '04 ELECTRICAL 12V', 'chassisNo': 13922, 'model': 'EXTREME', 'dealer': 'ALBURY RV'}
-{'station_name': '04 ELECTRICAL 12V', 'chassisNo': 13909, 'model': 'CENTAUR', 'dealer': 'CAMERONS'}
-{'station_name': '04 ELECTRICAL 12V', 'chassisNo': 13910, 'model': 'PORTHOS', 'dealer': 'CAMERONS'}
-{'station_name': '03 BUILDING STAGE 2', 'chassisNo': 13911, 'model': 'TRAILBREAKER', 'dealer': 'CAMERONS'}
-{'station_name': '03 BUILDING STAGE 2', 'chassisNo': 13912, 'model': 'CAMELOT', 'dealer': 'CAMERONS'}
-{'station_name': '03 BUILDING STAGE 2', 'chassisNo': 13913, 'model': 'TREVILLE', 'dealer': 'CAMERONS'}
-{'station_name': '03 BUILDING STAGE 2', 'chassisNo': 13914, 'model': 'NOBLEMAN', 'dealer': 'CAMERONS'}
-{'station_name': '03 BUILDING STAGE 2', 'chassisNo': 13923, 'model': 'ARAMIS', 'dealer': 'ALBURY RV'}
-{'station_name': '03 BUILDING STAGE 2', 'chassisNo': 13924, 'model': 'SERENITY', 'dealer': 'ALBURY RV'}
-{'station_name': '03 BUILDING STAGE 2', 'chassisNo': 13925, 'model': 'PALACE', 'dealer': 'ALBURY RV'}
-{'station_name': '03 BUILDING STAGE 2', 'chassisNo': 13911, 'model': 'TRAILBREAKER', 'dealer': 'CAMERONS'}
-{'station_name': '03 BUILDING STAGE 2', 'chassisNo': 13912, 'model': 'CAMELOT', 'dealer': 'CAMERONS'}
-{'station_name': '03 BUILDING STAGE 2', 'chassisNo': 13913, 'model': 'TREVILLE', 'dealer': 'CAMERONS'}
-{'station_name': '03 BUILDING STAGE 2', 'chassisNo': 13914, 'model': 'NOBLEMAN', 'dealer': 'CAMERONS'}
-{'station_name': '03 BUILDING STAGE 2', 'chassisNo': 13923, 'model': 'ARAMIS', 'dealer': 'ALBURY RV'}
-{'station_name': '03 BUILDING STAGE 2', 'chassisNo': 13924, 'model': 'SERENITY', 'dealer': 'ALBURY RV'}
-{'station_name': '03 BUILDING STAGE 2', 'chassisNo': 13925, 'model': 'PALACE', 'dealer': 'ALBURY RV'}
-{'station_name': '02 BUILDING STAGE 1', 'chassisNo': 13915, 'model': 'WARRIOR', 'dealer': 'CAMERONS'}
-{'station_name': '02 BUILDING STAGE 1', 'chassisNo': 13916, 'model': 'ARAMIS', 'dealer': 'CAMERONS'}
-{'station_name': '02 BUILDING STAGE 1', 'chassisNo': 13892, 'model': 'KINGSMAN', 'dealer': 'LEWIS RV'}
-{'station_name': '02 BUILDING STAGE 1', 'chassisNo': 13893, 'model': 'PALACE', 'dealer': 'LEWIS RV'}
-{'station_name': '02 BUILDING STAGE 1', 'chassisNo': 13894, 'model': 'NOBLEMAN', 'dealer': 'LEWIS RV'}
-{'station_name': '02 BUILDING STAGE 1', 'chassisNo': 13895, 'model': 'EXTREME', 'dealer': 'LEWIS RV'}
-{'station_name': '02 BUILDING STAGE 1', 'chassisNo': 13915, 'model': 'WARRIOR', 'dealer': 'CAMERONS'}
-{'station_name': '02 BUILDING STAGE 1', 'chassisNo': 13916, 'model': 'ARAMIS', 'dealer': 'CAMERONS'}
-{'station_name': '02 BUILDING STAGE 1', 'chassisNo': 13892, 'model': 'KINGSMAN', 'dealer': 'LEWIS RV'}
-{'station_name': '02 BUILDING STAGE 1', 'chassisNo': 13893, 'model': 'PALACE', 'dealer': 'LEWIS RV'}
-{'station_name': '02 BUILDING STAGE 1', 'chassisNo': 13894, 'model': 'NOBLEMAN', 'dealer': 'LEWIS RV'}
-{'station_name': '02 BUILDING STAGE 1', 'chassisNo': 13895, 'model': 'EXTREME', 'dealer': 'LEWIS RV'}
-{'station_name': '01 FLOOR & LINO ASSEMBLY', 'chassisNo': 14009, 'model': 'WARRIOR', 'dealer': 'ALM'}
-{'station_name': '01 FLOOR & LINO ASSEMBLY', 'chassisNo': 14010, 'model': 'PRINCE', 'dealer': 'ALM'}
-{'station_name': '01 FLOOR & LINO ASSEMBLY', 'chassisNo': 14011, 'model': 'PALACE', 'dealer': 'ALM'}
-{'station_name': '01 FLOOR & LINO ASSEMBLY', 'chassisNo': 13978, 'model': 'WARRIOR', 'dealer': 'CARAVANA RV'}
-{'station_name': '01 FLOOR & LINO ASSEMBLY', 'chassisNo': 12630, 'model': 'NOBLEMAN', 'dealer': 'BENDIGO CRUS'}
-{'station_name': '01 FLOOR & LINO ASSEMBLY', 'chassisNo': 12055, 'model': 'SERENITY', 'dealer': 'CRUS NEWCASTLE'}
-{'station_name': '01 FLOOR & LINO ASSEMBLY', 'chassisNo': 14009, 'model': 'WARRIOR', 'dealer': 'ALM'}
-{'station_name': '01 FLOOR & LINO ASSEMBLY', 'chassisNo': 14010, 'model': 'PRINCE', 'dealer': 'ALM'}
-{'station_name': '01 FLOOR & LINO ASSEMBLY', 'chassisNo': 14011, 'model': 'PALACE', 'dealer': 'ALM'}
-{'station_name': '01 FLOOR & LINO ASSEMBLY', 'chassisNo': 13978, 'model': 'WARRIOR', 'dealer': 'CARAVANA RV'}
-{'station_name': '01 FLOOR & LINO ASSEMBLY', 'chassisNo': 12630, 'model': 'NOBLEMAN', 'dealer': 'BENDIGO CRUS'}
-{'station_name': '01 FLOOR & LINO ASSEMBLY', 'chassisNo': 12055, 'model': 'SERENITY', 'dealer': 'CRUS NEWCASTLE'}
+{'station_name': '03 BUILDING STAGE 2', 'chassisNo': 13777, 'model': 'CAMELOT', 'dealer': 'CRUSADER RV'}
+{'station_name': '03 BUILDING STAGE 2', 'chassisNo': 13772, 'model': 'TRAILBREAKER', 'dealer': 'CRUSADER RV'}
+{'station_name': '03 BUILDING STAGE 2', 'chassisNo': 12287, 'model': 'TRAILBREAKER', 'dealer': 'CARAVANA RV'}
+{'station_name': '03 BUILDING STAGE 2', 'chassisNo': 12177, 'model': 'TRAILBREAKER', 'dealer': 'CAMERONS'}
+{'station_name': '03 BUILDING STAGE 2', 'chassisNo': 12970, 'model': 'DUKE', 'dealer': 'HERVEY BAY'}
+{'station_name': '03 BUILDING STAGE 2', 'chassisNo': 12181, 'model': 'EXTREME', 'dealer': 'CAMERONS'}
+{'station_name': '03 BUILDING STAGE 2', 'chassisNo': 13777, 'model': 'CAMELOT', 'dealer': 'CRUSADER RV'}
+{'station_name': '03 BUILDING STAGE 2', 'chassisNo': 13772, 'model': 'TRAILBREAKER', 'dealer': 'CRUSADER RV'}
+{'station_name': '03 BUILDING STAGE 2', 'chassisNo': 12287, 'model': 'TRAILBREAKER', 'dealer': 'CARAVANA RV'}
+{'station_name': '03 BUILDING STAGE 2', 'chassisNo': 12177, 'model': 'TRAILBREAKER', 'dealer': 'CAMERONS'}
+{'station_name': '03 BUILDING STAGE 2', 'chassisNo': 12970, 'model': 'DUKE', 'dealer': 'HERVEY BAY'}
+{'station_name': '03 BUILDING STAGE 2', 'chassisNo': 12181, 'model': 'EXTREME', 'dealer': 'CAMERONS'}
+{'station_name': '02 BUILDING STAGE 1', 'chassisNo': 12292, 'model': 'EXTREME', 'dealer': 'CAMERONS'}
+{'station_name': '02 BUILDING STAGE 1', 'chassisNo': 12040, 'model': 'SERENITY', 'dealer': 'CARAVANA RV'}
+{'station_name': '02 BUILDING STAGE 1', 'chassisNo': 12297, 'model': 'EXTREME', 'dealer': 'CARAVANA RV'}
+{'station_name': '02 BUILDING STAGE 1', 'chassisNo': 12319, 'model': 'EXTREME', 'dealer': 'CARLONS'}
+{'station_name': '02 BUILDING STAGE 1', 'chassisNo': 13434, 'model': 'EXTREME', 'dealer': 'CRUS NEWCASTLE'}
+{'station_name': '02 BUILDING STAGE 1', 'chassisNo': 12321, 'model': 'EXTREME', 'dealer': 'CRUS NEWCASTLE'}
+{'station_name': '02 BUILDING STAGE 1', 'chassisNo': 12292, 'model': 'EXTREME', 'dealer': 'CAMERONS'}
+{'station_name': '02 BUILDING STAGE 1', 'chassisNo': 12040, 'model': 'SERENITY', 'dealer': 'CARAVANA RV'}
+{'station_name': '02 BUILDING STAGE 1', 'chassisNo': 12297, 'model': 'EXTREME', 'dealer': 'CARAVANA RV'}
+{'station_name': '02 BUILDING STAGE 1', 'chassisNo': 12319, 'model': 'EXTREME', 'dealer': 'CARLONS'}
+{'station_name': '02 BUILDING STAGE 1', 'chassisNo': 13434, 'model': 'EXTREME', 'dealer': 'CRUS NEWCASTLE'}
+{'station_name': '02 BUILDING STAGE 1', 'chassisNo': 12321, 'model': 'EXTREME', 'dealer': 'CRUS NEWCASTLE'}
+{'station_name': '01 FLOOR & LINO ASSEMBLY', 'chassisNo': 13675, 'model': 'PATHWAY', 'dealer': 'FACTORY DIRECT'}
+{'station_name': '01 FLOOR & LINO ASSEMBLY', 'chassisNo': 13680, 'model': 'ARAMIS', 'dealer': 'FACTORY DIRECT'}
+{'station_name': '01 FLOOR & LINO ASSEMBLY', 'chassisNo': 13792, 'model': 'TREVILLE', 'dealer': 'CRUSADER RV'}
+{'station_name': '01 FLOOR & LINO ASSEMBLY', 'chassisNo': 13793, 'model': 'RECLINER', 'dealer': 'CRUSADER RV'}
+{'station_name': '01 FLOOR & LINO ASSEMBLY', 'chassisNo': 13795, 'model': 'WARRIOR', 'dealer': 'CRUSADER RV'}
+{'station_name': '01 FLOOR & LINO ASSEMBLY', 'chassisNo': 13797, 'model': 'ARAMIS', 'dealer': 'CRUSADER RV'}
+{'station_name': '01 FLOOR & LINO ASSEMBLY', 'chassisNo': 13798, 'model': 'DUKE', 'dealer': 'CRUSADER RV'}
+{'station_name': '01 FLOOR & LINO ASSEMBLY', 'chassisNo': 13799, 'model': 'SERENITY', 'dealer': 'CRUSADER RV'}
+{'station_name': '01 FLOOR & LINO ASSEMBLY', 'chassisNo': 13800, 'model': 'TREVILLE', 'dealer': 'CRUSADER RV'}
+{'station_name': '01 FLOOR & LINO ASSEMBLY', 'chassisNo': 13675, 'model': 'PATHWAY', 'dealer': 'FACTORY DIRECT'}
+{'station_name': '01 FLOOR & LINO ASSEMBLY', 'chassisNo': 13680, 'model': 'ARAMIS', 'dealer': 'FACTORY DIRECT'}
+{'station_name': '01 FLOOR & LINO ASSEMBLY', 'chassisNo': 13792, 'model': 'TREVILLE', 'dealer': 'CRUSADER RV'}
+{'station_name': '01 FLOOR & LINO ASSEMBLY', 'chassisNo': 13793, 'model': 'RECLINER', 'dealer': 'CRUSADER RV'}
+{'station_name': '01 FLOOR & LINO ASSEMBLY', 'chassisNo': 13795, 'model': 'WARRIOR', 'dealer': 'CRUSADER RV'}
+{'station_name': '01 FLOOR & LINO ASSEMBLY', 'chassisNo': 13797, 'model': 'ARAMIS', 'dealer': 'CRUSADER RV'}
+{'station_name': '01 FLOOR & LINO ASSEMBLY', 'chassisNo': 13798, 'model': 'DUKE', 'dealer': 'CRUSADER RV'}
+{'station_name': '01 FLOOR & LINO ASSEMBLY', 'chassisNo': 13799, 'model': 'SERENITY', 'dealer': 'CRUSADER RV'}
+{'station_name': '01 FLOOR & LINO ASSEMBLY', 'chassisNo': 13800, 'model': 'TREVILLE', 'dealer': 'CRUSADER RV'}
