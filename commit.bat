@@ -1,3 +1,3 @@
 git add .
-git commit -m "scheduler updated"
+git commit -m "scheduler with order"
 git push
