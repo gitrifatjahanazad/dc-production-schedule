@@ -1,3 +1,3 @@
 git add .
-git commit -m "api added for options"
+git commit -m "scheduler updated"
 git push
