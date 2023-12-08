@@ -1,3 +1,3 @@
 git add .
-git commit -m "fixed issue expriring"
+git commit -m "api added for options"
 git push
