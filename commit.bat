@@ -1,3 +1,3 @@
 git add .
-git commit -m "mongo local fields added - not in sync with arifa"
+git commit -m "arifa issue fixed"
 git push
