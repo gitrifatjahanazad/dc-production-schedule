@@ -1,30 +1,40 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
 name: Node.js CI
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+# This workflow is triggered on pushes to the repository.
+on: [push]
 
 jobs:
   build:
 
+    # This job runs on a Linux machine.
     runs-on: ubuntu-latest
 
+    # Define a strategy for running the job with multiple versions of Node.js.
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        node-version: [14, 16, 18] # Define Node.js versions here.
 
+    # Steps represent a sequence of tasks to be performed.
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
+    - name: Checkout Repository
+      # This step checks out your repository under $GITHUB_WORKSPACE, so the job can access it.
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js ${{ matrix.node-version }}
+      # This step sets up a Node.js environment with the version from the matrix.
+      uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm run build
-    - run: pwd
+
+    - name: Install Dependencies
+      # Change the working directory to the frontend directory where your Node.js app is located.
+      working-directory: ./frontend
+      # Install dependencies from your project's package.json file.
+      run: npm install
+
+    - name: Build React App
+      # Build your Node.js application.
+      working-directory: ./frontend
+      run: npm run build
+
+    # Add additional steps as needed (e.g., for caching, testing, deployment, etc.)
