@@ -1,0 +1,111 @@
+.nav {
+  background: #e6e6e6;
+  box-shadow: rgba(0, 0, 0, 0.15) 0.95px 1.95px 1.6px;
+}
+.nav .navbar-brand {
+  font-weight: 500;
+}
+.nav .navbar-collapse {
+  flex-grow: 0;
+}
+.nav .navbar-nav {
+  gap: 16px;
+}
+.nav .nav-link {
+  position: relative;
+  line-height: 1.2;
+}
+.nav .nav-link.active {
+  font-weight: 500;
+}
+.nav .nav-item {
+  font-size: 18px;
+}
+.nav li a {
+  padding: 0 !important;
+}
+.logo {
+  width: clamp(70px, 3.125rem + 5.333vw, 112px);
+}
+.nav .nav-item .btn {
+  font-size: 16px;
+}
+.navbar-toggler:focus {
+  box-shadow: none !important;
+}
+.nav__search-box input {
+  outline: none;
+  width: clamp(180px, 8.125rem + 11.333vw, 250px);
+  padding-left: 40px;
+  font-size: 14px;
+  border: 1px solid #e9eaf0;
+}
+.nav__search-box__icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translate(0%, -50%);
+}
+.nav__search-box__icon svg {
+  width: 20px;
+  height: 20px;
+}
+.user-info__tooltip {
+  visibility: hidden;
+  width: 100px;
+  background-color: #616161e5;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: -38px;
+  left: -38px;
+  opacity: 1;
+  transition: opacity 0.3s;
+  filter: drop-shadow(none) !important;
+}
+.user-info__tooltip::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+  transform: rotate(180deg);
+}
+.user-info:hover .user-info__tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+.bell-icon::before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ff6636;
+  border: 2px solid white;
+  top: 0;
+  left: inherit;
+  right: 2px;
+}
+.notification-menu {
+  transform: translate3d(-80px, 7px, 0px);
+}
+@media screen and (min-width: 992px) {
+  .nav__search-box input {
+    width: 350px;
+  }
+
+  .nav .navbar-nav {
+    gap: 32px;
+  }
+  .notification-menu {
+    transform: translate3d(-65px, 8px, 0px);
+  }
+}

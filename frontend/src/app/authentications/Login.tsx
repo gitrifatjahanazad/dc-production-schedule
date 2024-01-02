@@ -65,24 +65,24 @@ const Login = () => {
         <Navigate to="/home" />
       ) : (
         <div
-          className="container-fluid main-container d-flex align-items-center"
-          style={{ height: "100vh" }}
+          className="login-layout d-flex flex-column align-items-center justify-content-center position-relative"
         >
           <div
             className={
               isLoading
-                ? "disabled d-flex flex-column w-100 justify-content-center align-items-center"
-                : "d-flex flex-column w-100 justify-content-center align-items-center"
+                ? "disabled d-flex flex-column justify-content-center align-items-center"
+                : "d-flex flex-column justify-content-center align-items-center"
             }
           >
-            <div className="d-flex">
-              <h4>Production Schedule System</h4>
-            </div>
-            <div className="d-flex">
-              <button className="btn btn-success" onClick={login}>
-                Login
-              </button>
-            </div>
+              <div className="d-flex flex-column justify-content-center align-items-center gap-3">
+                <div className="login__logo">
+                  <img src="./crusader-logo.svg" alt="" />
+                </div>
+                <h2 className="mb-3 text-center">Production Schedule System</h2>
+                <button className="d-none d-md-block btn blue-btn font-lg" onClick={login}>
+                  Login
+                </button>
+              </div>
             <CircleLoader
               loading={isLoading}
               color="#36d7b7"
@@ -95,6 +95,12 @@ const Login = () => {
               aria-label="Loading Spinner"
               data-testid="loader"
             />
+          </div>
+          <div className="d-flex d-md-none flex-column justify-content-end position-absolute" style={{width: '90%', bottom: '0'}}>
+            <p className="text-center font-md" style={{color: '#A9A9A9'}}>A system To manage caravan production line schedules</p>
+            <button className="btn blue-btn font-lg" onClick={login}>
+              Login
+            </button>
           </div>
         </div>
       )}

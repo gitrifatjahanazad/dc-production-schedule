@@ -58,18 +58,24 @@ export default function Header() {
 
   return (
     <div>
-      <div className="">
-        <a href="/home" className="logo" onClick={gotoHome}>
+      <div className="d-flex justify-content-between">
+        <a
+          href="/home"
+          className="logo d-flex justify-content-center align-items-center"
+          onClick={gotoHome}
+        >
           <img src="./crusader-logo.svg" alt="Logo" />
         </a>
         <div className="header-right">
-
           {location.pathname !== "/download" && (
-            <button className="btn btn-secondary" onClick={handleShowFiles}>
+            <button
+              className="btn btn-secondary font-lg"
+              onClick={handleShowFiles}
+            >
               Show Files
             </button>
           )}
-          <button className="btn btn-primary" onClick={handleShow}>
+          <button className="btn blue-btn font-lg" onClick={handleShow}>
             Upload
           </button>
         </div>

@@ -1,3 +1,129 @@
-.reactgrid {
-  font-family: Arial, Helvetica, sans-serif;
+.schedule__data-grid {
+  display: inline-block;
+  max-height: calc(100vh - 9rem);
+  max-width: 100%;
+  overflow: scroll;
+}
+
+.rg-pane.rg-pane-top .rg-text-cell {
+  background-color: rgb(59, 17, 80) !important;
+  color: white !important;
+  height: 40px !important;
+  font-size: 18px;
+  font-weight: 500;
+  box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.1);
+}
+
+.rg-pane-shadow.shadow-top {
+  box-shadow: none !important;
+}
+
+.rg-pane.rg-pane-center-middle {
+  margin-top: 16px !important;
+}
+
+.rg-cell {
+  padding-left: 10px !important;
+}
+
+.rg-celleditor input {
+  border: 0;
+}
+
+.schedule__data-grid::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+.schedule__data-grid {
+  scrollbar-width: auto;
+  scrollbar-color: #90a4ae #cfd8dc;
+}
+
+.schedule__data-grid::-webkit-scrollbar-track {
+  background: #cfd8dc;
+  border-radius: 5px;
+}
+
+.schedule__data-grid::-webkit-scrollbar-thumb {
+  background-color: #90a4ae;
+  border-radius: 5px;
+  border: 2px solid #cfd8dc;
+}
+
+/* For Mobile Version */
+.schedule__data--mobile {
+  border-radius: 5px;
+  border: 1px solid #b1c9e0;
+  padding: 8px;
+}
+
+.schedule__data--mobile:is( :active,
+  :hover,
+  :visited,
+  :focus,
+  :focus-within,
+  :focus-visible) {
+  background-color: #b1c9e0;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+}
+
+.schedule__data__field {
+  overflow: hidden;
+  white-space: wrap;
+}
+
+.rtl {
+  direction: rtl;
+}
+
+.textarea--remarks {
+  margin-bottom: 16px;
+  resize: none;
+}
+
+textarea {
+  font-size: 12px !important;
+}
+
+.assign__dropdown {
+  border: 1px solid #3b1150 !important;
+  box-shadow: 0px 6px 16px 0px rgba(0, 0, 0, 0.06);
+  width: 200px;
+}
+
+.assign__dropdown input {
+  padding-left: 40px;
+  font-size: 12px;
+}
+
+.assign__search-box {
+  outline: none;
+  border-color: #3b1150 !important;
+  border-style: solid;
+  border-width: 0px 0px 1px 0px !important;
+}
+
+.assign__search-box__icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translate(0%, -50%);
+}
+
+.assign__list-item:is(:hover, :focus, :active, :focus-visible, :focus-within) {
+  background: #b1c9e0;
+}
+
+img.assign__image {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+@media only screen and (max-width: 992px) {
+
+  textarea.form-control {
+    width: 80% !important;
+  }
 }

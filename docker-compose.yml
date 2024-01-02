@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: rootuser  # Replace with your username
+      MONGO_INITDB_ROOT_PASSWORD: rootpass  # Replace with your password
+    volumes:
+      - ./mongodb_data:/data/db  # Persists data between container restarts
+    ports:
+      - "27017:27017"  # Expose MongoDB on host machine for development
+
+  mongo-express:
+    image: mongo-express:latest
+    container_name: mongo-express
+    depends_on:
+      - mongodb
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: rootuser  # Should match MongoDB username
+      ME_CONFIG_MONGODB_ADMINPASSWORD: rootpass  # Should match MongoDB password
+      ME_CONFIG_MONGODB_SERVER: mongodb
+    ports:
+      - "8081:8081"  # Expose Mongo Express on this port of the host machine
+
+volumes:
+  mongodb_data:  # Named volume for persisting MongoDB data
