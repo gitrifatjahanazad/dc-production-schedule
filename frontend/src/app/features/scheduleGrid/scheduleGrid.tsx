@@ -99,6 +99,9 @@ function ScheduleGrid() {
       srcQuery=""
     }
     try {
+      const configResponse = await fetch(`${REACT_APP_API_BASE_URL}/get_configuration_info`);
+      const configResponseData = await configResponse.json();
+      setPageSize(configResponseData["Items per page"]);
       const response = await fetch(`${REACT_APP_API_BASE_URL}/xml_to_json_merged?query=${srcQuery}&page_num=${currentPage}&page_size=${pageSize}`);
       const responseData = await response.json();
       
@@ -195,7 +198,7 @@ function ScheduleGrid() {
     // Clean up the interval when the component unmounts
     return () => clearInterval(intervalId);
 
-  }, [searchQuery,currentPage]);
+  }, [searchQuery,currentPage,pageSize]);
 
   
   //Handle Field Text Changes

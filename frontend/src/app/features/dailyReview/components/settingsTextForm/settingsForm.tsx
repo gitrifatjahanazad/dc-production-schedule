@@ -72,6 +72,12 @@ const ProductionForm = () => {
         if (fileSavingTimeElement) {
           fileSavingTimeElement.value = data["File save at"];
         }
+        const itemsPerPageElement = document.getElementById(
+          "itemsPerPage"
+        ) as HTMLInputElement;
+        if (itemsPerPageElement) {
+          itemsPerPageElement.value = data["Items per page"];
+        }
       })
       .catch((error) => {
         console.error("Error fetching configuration info:", error);
@@ -111,6 +117,7 @@ const ProductionForm = () => {
       Main_Line_Daily_Production_Schedule_Excel_Path:
         getElementValue("excelPath"),
       File_save_at: getElementValue("fileSavedAt"),
+      Items_per_page: getElementValue("itemsPerPage"),
     };
     fetch(`${REACT_APP_API_BASE_URL}/update_configuration_info`, {
       method: "POST",
@@ -276,6 +283,15 @@ const ProductionForm = () => {
           type="text"
           className="form-control"
           id="fileSavedAt"
+          readOnly={!isEditing}
+        />
+      </div>
+      <h3>Item Per Page:</h3>
+      <div className="form-group">
+        <input
+          type="text"
+          className="form-control"
+          id="itemsPerPage"
           readOnly={!isEditing}
         />
       </div>

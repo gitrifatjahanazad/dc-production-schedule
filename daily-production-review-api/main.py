@@ -322,7 +322,8 @@ def update_configuration_info(data: UpdateConfigurationInfo):
         'CNC = Start No. +': updated_data['CNC_Start_No'],
         'Main Line Daily Production Schedule Excel Path:\n': updated_data[
             'Main_Line_Daily_Production_Schedule_Excel_Path'],
-        'File save at: ': updated_data['File_save_at']
+        'File save at: ': updated_data['File_save_at'],
+        'Items per page: ': updated_data['Items_per_page'],
     }
 
 
