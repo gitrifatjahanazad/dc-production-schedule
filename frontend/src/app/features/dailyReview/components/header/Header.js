@@ -3,6 +3,7 @@ import { useNavigate, Link, useLocation } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Header.css";
 import UploadModal from "./UploadModal";
+import FormDisabledExample from "../settingsTextForm/settingsForm";
 const { REACT_APP_API_BASE_URL } = process.env;
 
 export default function Header() {
@@ -56,6 +57,10 @@ export default function Header() {
     navigate("/");
   };
 
+  const handleConfiguration = () => {
+    navigate("/configuration");
+  };
+
   return (
     <div>
       <div className="d-flex justify-content-between">
@@ -77,6 +82,12 @@ export default function Header() {
           )}
           <button className="btn blue-btn font-lg" onClick={handleShow}>
             Upload
+          </button>
+          <button
+            className="btn btn-info font-lg"
+            onClick={handleConfiguration}
+          >
+            Configuration
           </button>
         </div>
       </div>

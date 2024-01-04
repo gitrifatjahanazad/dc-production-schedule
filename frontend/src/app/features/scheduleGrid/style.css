@@ -8,18 +8,8 @@
 .rg-pane.rg-pane-top .rg-text-cell {
   background-color: rgb(59, 17, 80) !important;
   color: white !important;
-  height: 40px !important;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
-  box-shadow: 2px 2px 3px 1px rgba(0, 0, 0, 0.1);
-}
-
-.rg-pane-shadow.shadow-top {
-  box-shadow: none !important;
-}
-
-.rg-pane.rg-pane-center-middle {
-  margin-top: 16px !important;
 }
 
 .rg-cell {
@@ -49,6 +39,10 @@
   background-color: #90a4ae;
   border-radius: 5px;
   border: 2px solid #cfd8dc;
+}
+
+.plus-icon {
+  fill: #fff;
 }
 
 /* For Mobile Version */

@@ -1,0 +1,63 @@
+.form_wrapper {
+    background: #fcfcfc;
+    width: 500px;
+    max-width: 100%;
+    padding: 25px;
+    margin: 1% auto 0;
+    border-top: 5px solid #4e78a0;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+}
+
+.form_wrapper h2 {
+    font-size: 1.5em;
+    line-height: 1.5em;
+    margin: 0;
+}
+
+.form_wrapper .input_field {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input_field .form-control {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.input_field label {
+    color: rgb(14, 17, 81);
+}
+
+.input_field ::placeholder {
+    font-size: 14px;
+}
+
+.input_field .form-control:focus {
+    -webkit-box-shadow: 0 0 2px 1px rgba(14, 17, 81, 0.5);
+    -moz-box-shadow: 0 0 2px 1px rgba(14, 17, 81, 0.5);
+    box-shadow: 0 0 2px 1px rgba(14, 17, 81, 0.5);
+    background: #fff;
+}
+
+.form_wrapper input[type=submit] {
+    line-height: 35px;
+    width: 100%;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: #fff;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+@media only screen and (max-width: 576px) {
+    .form_wrapper {
+        width: 100%;
+    }
+}

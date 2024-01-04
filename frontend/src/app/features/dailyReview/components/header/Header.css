@@ -21,6 +21,10 @@ body {
   margin-right: 10px;
 }
 
+.btn-info {
+  margin-left: 10px;
+}
+
 .upload-btn {
   background-color: #3498db; /* Blue color */
   border-color: #3498db; /* Blue color */

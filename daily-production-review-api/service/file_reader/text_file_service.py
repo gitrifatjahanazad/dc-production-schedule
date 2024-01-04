@@ -48,15 +48,23 @@ def extract_excel_path(file_path):
     with open(file_path, 'r') as file:
         content = file.read()
 
-    # Find the index of the line containing "Main Line Daily Production Schedule Excel Path:"
+        # Find the index of the line containing "Main Line Daily Production Schedule Excel Path:"
     start_index = content.find("Main Line Daily Production Schedule Excel Path:")
 
-    # Extract the substring after the specified line
-    path_line = content[start_index:]
-    path_start_index = path_line.find(":") + 1
-    excel_path = path_line[path_start_index:].strip()
+    if start_index != -1:
+        # Extract the substring after the specified line
+        path_line = content[start_index:]
+        path_start_index = path_line.find(":") + 1
+        excel_path = path_line[path_start_index:].strip()
 
-    return excel_path
+        # Find the end index of the line containing the Excel path
+        end_index = excel_path.find("\n")
+        if end_index != -1:
+            excel_path = excel_path[:end_index].strip()
+
+        return excel_path
+
+    return None
 
 
 def save_response_to_file(response_data):
@@ -87,7 +95,7 @@ def extract_job_progress_time_from_text_file(file_path):
         with open(file_path, 'r') as file:
             file_content = file.read()
 
-            pattern = r"Job Progress per Station: (\d+) mins"
+            pattern = r"Job Progress per Station: (\d+)"
 
             match = re.search(pattern, file_content)
 
@@ -120,3 +128,44 @@ def get_file_save_time(file_path):
     except FileNotFoundError:
         print(f"File not found at path: {file_path}")
         return None
+
+
+def read_text_file(file_path):
+    production_info = {}
+    current_key = None
+
+    with open(file_path, "r") as file:
+        for line in file:
+            line = line.strip()
+
+            if ":" in line and "xls" not in line and "00:00:00" not in line:
+                current_key = line.split(":")[0].strip()
+                value_match = re.search(r'\d+', line)
+                production_info[current_key] = value_match.group() if value_match else ""
+            elif "=" in line:
+                if "+" in line:
+                    current_key, value = map(str.strip, re.split(r'\+', line, 1))
+                    current_key = current_key + " + "
+                elif "-" in line:
+                    current_key, value = map(str.strip, re.split(r'-', line, 1))
+                    current_key = current_key + " - "
+
+                sign_index = value.find('+')
+                if sign_index == -1:
+                    sign_index = value.find('-')
+
+                if sign_index != -1:
+                    production_info[current_key] = value[sign_index:].strip()
+                else:
+                    production_info[current_key] = value.strip()
+
+            if "Main Line Daily Production Schedule Excel Path" in line:
+                current_key = line.split(":")[0].strip()
+                production_info[current_key] = extract_excel_path(file_path)
+            if "File save at:" in line:
+                current_key = line.split(":")[0].strip()
+                index = line.find("File save at:")
+                production_info[current_key] = line[index + len("File save at:"):].strip()
+
+    return production_info
+

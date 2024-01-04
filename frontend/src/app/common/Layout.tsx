@@ -73,6 +73,11 @@ const Layout = () => {
                     Schedule Grid
                   </NavLink>
                 </li>
+                <li className="nav-item">
+                  <NavLink to="/form" className="nav-link">
+                    Form
+                  </NavLink>
+                </li>
                 <li className="nav-item dropdown d-none d-lg-block">
                   <span className="dropdown-toggle bell-icon position-relative d-flex align-items-center" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="./Bell.svg" alt="" />

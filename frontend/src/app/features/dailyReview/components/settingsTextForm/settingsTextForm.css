@@ -1,0 +1,37 @@
+.container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  h2 {
+    margin-top: 20px;
+  }
+  .bordered-section {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+  }
+
+  .input-roof{
+    width: 300px !important;
+  }
+  .input-short {
+    width: 150px !important; 
+  }
+
+  .input-shorter {
+    width: 150px !important; 
+  }
+  .label-width {
+    width: 100px !important; 
+    display: inline-block;
+  }
+  .label-day-width {
+    width: 200px !important; 
+    display: inline-block;
+  }
+  .day-dropdown-width {
+    width: 100px; 
+    display: inline-block;
+  }

@@ -36,55 +36,78 @@ def ensure_directory(directory_path='./scheduler_result'):
         # If it doesn't exist, create it
         os.makedirs(directory_path)
 
-def make_api_call_and_save_response():
-    # Replace this URL with the actual API endpoint you want to call
-    api_url = "https://orders.crusadercaravans.com.au/ScheduleFeed.asmx"
-
-    # Define custom headers as a dictionary
+def make_api_call(api_url, xml_body, soap_action, filename_prefix):
     headers = {
-        "Content-Type": "text/xml",  # Set the content type to XML
-        "SOAPAction": "http://orders.crusadercaravans.com.au/GetScheduleAsXml"     # Add any other custom headers as needed
+        "Content-Type": "text/xml",
+        "SOAPAction":  soap_action     # Add any other custom headers as needed
     }
 
-    # Define the XML request body as a string
-    xml_body = """<?xml version="1.0" encoding="utf-8"?>
-<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
-  <soap:Body>
-    <GetScheduleAsXml xmlns="http://orders.crusadercaravans.com.au/">
-      <Username>api</Username>
-      <Password>GfHJ34</Password>
-    </GetScheduleAsXml>
-  </soap:Body>
-</soap:Envelope>
-    """
-
-    # Make the POST request with headers and XML body
     response = requests.post(api_url, headers=headers, data=xml_body)
-    
+
     if response.status_code == 200:
         logging.info("API call successful")
-        
-        # Get the current UTC date-time in ISO format
+
         timestamp = datetime.now(utc).isoformat()
-        
-        # Format the timestamp to make it filename-friendly
         formatted_timestamp = timestamp.replace(":", "-").replace(".", "-")
-        
-        # Create a filename with the timestamp
-        filename = f"api_response_{formatted_timestamp}.xml"
+
+        filename = f"{filename_prefix}_{formatted_timestamp}.xml"
         filename = os.path.join(scheduler_result_path, filename)
-        
-        # Save the response content to the filename
+
         with open(filename, "w") as file:
             file.write(response.text)
-            
+
         logging.info(f"API response saved to {filename}")
     else:
         logging.error(f"API call failed with status code {response.status_code}")
 
+def call_apis():
+    api_url = "https://orders.crusadercaravans.com.au/ScheduleFeed.asmx"
+    api_url2 = "https://orders.crusadercaravans.com.au/ScheduleFeed.asmx"
+    api_url3 = "https://orders.crusadercaravans.com.au/ScheduleFeed.asmx"
+
+    soap_action_schedule_feed= "http://orders.crusadercaravans.com.au/GetScheduleAsXml"
+    soap_action_schedule_options= "http://orders.crusadercaravans.com.au/GetScheduleOptionsAsXml"
+    soap_action_schedule_variations= "http://orders.crusadercaravans.com.au/GetScheduleVariationsAsXml"
+
+    xml_body = """<?xml version="1.0" encoding="utf-8"?>
+       <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+         <soap:Body>
+           <GetScheduleAsXml xmlns="http://orders.crusadercaravans.com.au/">
+             <Username>api</Username>
+             <Password>GfHJ34</Password>
+           </GetScheduleAsXml>
+         </soap:Body>
+       </soap:Envelope>
+       """
+    xml_body2 = """<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <GetScheduleOptionsAsXml xmlns="http://orders.crusadercaravans.com.au/">
+      <Username>api</Username>
+      <Password>GfHJ34</Password>
+    </GetScheduleOptionsAsXml>
+  </soap:Body>
+</soap:Envelope>
+          """
+    xml_body3 = """<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+  <soap:Body>
+    <GetScheduleVariationsAsXml xmlns="http://orders.crusadercaravans.com.au/">
+      <Username>api</Username>
+      <Password>GfHJ34</Password>
+    </GetScheduleVariationsAsXml>
+  </soap:Body>
+</soap:Envelope>
+          """
+
+    make_api_call(api_url, xml_body, soap_action_schedule_feed,"api_response")
+    make_api_call(api_url2, xml_body2, soap_action_schedule_options,"schedule_options")
+    make_api_call(api_url3, xml_body3, soap_action_schedule_variations,"schedule_variations")
+
+
 def job():
     logging.info(f"Running the API call job...")
-    make_api_call_and_save_response()
+    call_apis()
 
 if __name__ == "__main__":
     log_init()
