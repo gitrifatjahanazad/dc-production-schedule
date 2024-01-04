@@ -10,6 +10,7 @@ import { forEach } from "lodash";
 import { useLocation } from "react-router-dom";
 import ReactPaginate from 'react-paginate';
 import { useEffect } from "react";
+import WeekDays from "./weekDays";
 
 const { REACT_APP_API_BASE_URL } = process.env;
 
@@ -76,8 +77,6 @@ function ScheduleGrid() {
   
   const location = useLocation();
   const searchQuery  = location.state;
-
-  console.log("Test");
 
   const fetchRemarks = (jobId: string) => {
     fetch(`${REACT_APP_API_BASE_URL}/get_remark/${jobId}`)
@@ -372,74 +371,78 @@ function ScheduleGrid() {
             {isBigScreen ? (
               <>
                 <div className="row">
-                <div className="col-12">
-                  <div className="schedule__data-grid">
-                    <div>
-                      <ReactGrid stickyTopRows={1}
-                        rows={data.map((item) => ({
-                          rowId: item.RowID,
-                          reorderable: true,
-                          cells:
-                          [
-                            { type: "text", text: item.WeekNumber, nonEditable: isNewRow(item) ? false : true },
-                            {
-                              type: "text",
-                              text: item.ProductionStartDate,
-                              nonEditable: isNewRow(item) ? false : true,
-                            },
-                            { type: "text", text: item.Serial, nonEditable: isNewRow(item) ? false : true },
-                            {
-                              type: "text",
-                              text: item.JobContactLastName,
-                              nonEditable: isNewRow(item) ? false : true,
-                            },
-                            { type: "text", text: item.Model, nonEditable: isNewRow(item) ? false : true },
-                            {
-                              type: "text",
-                              text: item.ProductionValue,
-                              nonEditable: isNewRow(item) ? false : true,
-                            },
-                            { type: "text", text: item.Dealer, nonEditable: isNewRow(item) ? false : true },
-                            { type: "text", text: item.Status, nonEditable: isNewRow(item) ? false : true },
-                            {
-                              type: "text",
-                              text: item.PreferredCompletion,
-                              nonEditable: isNewRow(item) ? false : true,
-                            },
-                            { type: "text", text: item.Remarks, nonEditable: false },
-                          ],
-                        }))}
-                        columns={columns}
-                        onCellsChanged={handleChanges}
-                        onSelectionChanged={handleOpenModal}
-                        onRowsReordered={handleRowsReorder}
-                        canReorderRows={handleCanReorderRows}
-                        onColumnResized={handleColumnResize} 
-                        enableRowSelection
-                        enableColumnSelection
-                      />
-                    </div>
+                  <div className="col-3">
+                    <WeekDays />
                   </div>
-                  <ReactPaginate
-                    previousLabel={"previous"}
-                    nextLabel={"next"}
-                    breakLabel={"..."}
-                    pageCount={Math.ceil(totalItems/pageSize)}
-                    marginPagesDisplayed={2}
-                    pageRangeDisplayed={3}
-                    onPageChange={handlePageClick}
-                    containerClassName={"pagination justify-content-center"}
-                    pageClassName={"page-item"}
-                    pageLinkClassName={"page-link"}
-                    previousClassName={"page-item"}
-                    previousLinkClassName={"page-link"}
-                    nextClassName={"page-item"}
-                    nextLinkClassName={"page-link"}
-                    breakClassName={"page-item"}
-                    breakLinkClassName={"page-link"}
-                    activeClassName={"active"}
-                  />
-                </div>
+                  <div className="col-9">
+                    <div className="schedule__data-grid">
+                      <div>
+                        <ReactGrid stickyTopRows={1}
+                          rows={data.map((item) => ({
+                            rowId: item.RowID,
+                            reorderable: true,
+                            cells:
+                            [
+                              { type: "text", text: item.WeekNumber, nonEditable: isNewRow(item) ? false : true },
+                              {
+                                type: "text",
+                                text: item.ProductionStartDate,
+                                nonEditable: isNewRow(item) ? false : true,
+                              },
+                              { type: "text", text: item.Serial, nonEditable: isNewRow(item) ? false : true },
+                              {
+                                type: "text",
+                                text: item.JobContactLastName,
+                                nonEditable: isNewRow(item) ? false : true,
+                              },
+                              { type: "text", text: item.Model, nonEditable: isNewRow(item) ? false : true },
+                              {
+                                type: "text",
+                                text: item.ProductionValue,
+                                nonEditable: isNewRow(item) ? false : true,
+                              },
+                              { type: "text", text: item.Dealer, nonEditable: isNewRow(item) ? false : true },
+                              { type: "text", text: item.Status, nonEditable: isNewRow(item) ? false : true },
+                              {
+                                type: "text",
+                                text: item.PreferredCompletion,
+                                nonEditable: isNewRow(item) ? false : true,
+                              },
+                              { type: "text", text: item.Remarks, nonEditable: false },
+                            ],
+                          }))}
+                          columns={columns}
+                          onCellsChanged={handleChanges}
+                          onSelectionChanged={handleOpenModal}
+                          onRowsReordered={handleRowsReorder}
+                          canReorderRows={handleCanReorderRows}
+                          onColumnResized={handleColumnResize} 
+                          enableRowSelection
+                          enableColumnSelection
+                        />
+                      </div>
+                    </div>
+                    <ReactPaginate
+                      previousLabel={"<<"}
+                      nextLabel={">>"}
+                      breakLabel={"..."}
+                      pageCount={Math.ceil(totalItems/pageSize)}
+                      marginPagesDisplayed={2}
+                      pageRangeDisplayed={3}
+                      onPageChange={handlePageClick}
+                      containerClassName={"pagination justify-content-center"}
+                      pageClassName={"page-item"}
+                      pageLinkClassName={"page-link"}
+                      previousClassName={"page-item"}
+                      previousLinkClassName={"page-link"}
+                      nextClassName={"page-item"}
+                      nextLinkClassName={"page-link"}
+                      breakClassName={"page-item"}
+                      breakLinkClassName={"page-link"}
+                      activeClassName={"active"}
+                      forcePage={currentPage - 1}
+                    />
+                  </div>
               </div>
               {modalShow && dataItemIndex !== undefined && (
                 <ScheduleModal
