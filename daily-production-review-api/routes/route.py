@@ -2,8 +2,8 @@ import os
 
 
 from click import File
-from fastapi import APIRouter, UploadFile
-from starlette.responses import JSONResponse
+from fastapi import APIRouter, UploadFile, HTTPException
+from starlette.responses import JSONResponse, FileResponse
 from urllib.parse import quote
 
 from service.file_reader.text_file_service import extract_job_progress_time_from_text_file, read_response_from_file
@@ -68,3 +68,11 @@ async def get_files():
         return JSONResponse(content={'files': files})
     except Exception as e:
         return JSONResponse(content={'error': str(e)}, status_code=500)
+
+@router.get("/outputDirectory/{file_name}")
+def download_file(file_name: str):
+    file_path = os.path.join(output_folder, file_name)
+    if os.path.exists(file_path):
+        return FileResponse(file_path, filename=file_name)
+    else:
+        raise HTTPException(status_code=404, detail="File not found")
