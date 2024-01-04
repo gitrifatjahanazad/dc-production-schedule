@@ -14,6 +14,10 @@ const Layout = () => {
     userStorage.revoveAllInfo();
     navigate("/");
   };
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const searchQuery = event.target.value;
+    navigate(`/ScheduleGrid`, {state:searchQuery} );
+  }
   return (
     <main className="App">
       <nav className="navbar nav navbar-expand-lg navbar-light bg-light">
@@ -25,7 +29,7 @@ const Layout = () => {
               </NavLink>
             </h1>
             <div className="nav__search-box position-relative">
-                <input className="rounded-0 form-control" placeholder="Free Text Search" type="text"/>
+                <input className="rounded-0 form-control" placeholder="Free Text Search" type="text" onChange={handleSearch}/>
                 <span className="nav__search-box__icon d-flex align-items-center">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g id="MagnifyingGlass">

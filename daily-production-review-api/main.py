@@ -46,6 +46,7 @@ from service.merge_xml_as_json.convert_xml_to_json import xml_to_json
 from service.merge_xml_as_json.merge_xml_files import merge_xml_files
 from service.merge_xml_as_json.replace_xml_attribute import replace_attribute
 from service.merge_xml_as_json.sort_all_files import get_latest_xml_files
+from service.merge_xml_as_json.transform_merged_data import transform_data
 from service.services import (
     get_todays_date,
     get_previous_dates,
@@ -201,45 +202,70 @@ async def convert_latest_xml_to_json():
         return JSONResponse(content={"error": str(e)})
 
 @app.get("/xml_to_json_merged")
-async def convert_latest_xml_to_json_merged():
-    # try:
-    folder_path = os.environ.get("XML_FOLDER_PATH", "./scheduler/scheduler_result")
-    keywords = ["api_response", "schedule_options", "schedule_variations"]
-    latest_files = get_latest_xml_files(keywords)
+async def convert_latest_xml_to_json_merged(query: str | None = None, page_num: int = 1, page_size: int = 10):
+    try:
+        folder_path = os.environ.get("XML_FOLDER_PATH", "./scheduler/scheduler_result")
+        keywords = ["api_response", "schedule_options", "schedule_variations"]
+        latest_files = get_latest_xml_files(keywords)
 
-    api_response_file= os.path.join(folder_path, latest_files.get('api_response', ''))
-    schedule_options_file = os.path.join(folder_path, latest_files.get('schedule_options', ''))
-    schedule_variations_file =  os.path.join(folder_path, latest_files.get('schedule_variations', ''))
-    # output = os.path.join(folder_path, "merged.xml")
+        api_response_file= os.path.join(folder_path, latest_files.get('api_response', ''))
+        schedule_options_file = os.path.join(folder_path, latest_files.get('schedule_options', ''))
+        schedule_variations_file =  os.path.join(folder_path, latest_files.get('schedule_variations', ''))
+        # output = os.path.join(folder_path, "merged.xml")
 
-    # Parse XML content from the files
-    with open(schedule_options_file, 'r') as file:
-        root2 = ET.fromstring(file.read())
+        # Parse XML content from the files
+        with open(schedule_options_file, 'r') as file:
+            root2 = ET.fromstring(file.read())
 
-    with open(schedule_variations_file, 'r') as file:
-        root3 = ET.fromstring(file.read())
+        with open(schedule_variations_file, 'r') as file:
+            root3 = ET.fromstring(file.read())
 
-    with open(api_response_file, 'r') as file:
-        root1 = ET.fromstring(file.read())
+        with open(api_response_file, 'r') as file:
+            root1 = ET.fromstring(file.read())
 
-    # Replace JobID with jobiD in api_respnse
-    root1 = replace_attribute(root1, "JobID", "jobid")
+        # Replace JobID with jobiD in api_respnse
+        root1 = replace_attribute(root1, "JobID", "jobid")
 
-    merge_based_on = "productionno"
-    merged_response_productionno = merge_xml_files(root2, root3, merge_based_on)
+        merge_based_on = "productionno"
+        merged_response_productionno = merge_xml_files(root2, root3, merge_based_on)
 
-    merge_based_on = "jobid"
-    merged_response_productionno = merge_xml_files(root1, merged_response_productionno, merge_based_on)
+        merge_based_on = "jobid"
+        merged_response_productionno = merge_xml_files(root1, merged_response_productionno, merge_based_on)
 
-    converted_json = xml_to_json(merged_response_productionno)
+        converted_json = xml_to_json(merged_response_productionno)
 
-    return converted_json
+        existing_data = converted_json.get("MergedResponse", {}).get("ScheduleOptionsVariations", [])
+
+        transformed_data = transform_data(existing_data)
+
+        # search
+        filtered_data = []
+        if query:
+            for item in transformed_data:
+                for value in item.values():
+                    value = value.lower()
+                    search_query = query.lower()
+                    if search_query in value:
+                        filtered_data.append(item)
+        else:
+            filtered_data = transformed_data
+
+        # Pagination
+        total_items = len(filtered_data)
+        start_index = (page_num - 1) * page_size
+        end_index = start_index + page_size
+        paginated_data = filtered_data[start_index:end_index]
+
+        return JSONResponse(content={"total_items": total_items, "page_num": page_num, "page_size": page_size, "data": paginated_data})
+
+    except Exception as e:
+        return JSONResponse(content={"error": str(e)})
 
 # Register to be called when the program is exiting
 atexit.register(exit_handler)
 
-# scheduler_thread = Thread(target=run_scheduler)
-# scheduler_thread.start()
+scheduler_thread = Thread(target=run_scheduler)
+scheduler_thread.start()
 
 
 @app.post("/save_remark")

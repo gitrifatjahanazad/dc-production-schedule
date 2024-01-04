@@ -7,6 +7,7 @@ import ScheduleGridMobile from "./ScheduleGridMobile";
 import moment from "moment";
 import ScheduleModal from "./ScheduleModal";
 import { forEach } from "lodash";
+import { useLocation } from "react-router-dom";
 
 const { REACT_APP_API_BASE_URL } = process.env;
 
@@ -67,6 +68,13 @@ function ScheduleGrid() {
   const [dataItemIndex, setDataItemIndex] = React.useState<number | undefined>();
   const [columns, setColumns] = React.useState<Column[]>(primaryColumns());
 
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const [pageSize, setPageSize] = React.useState(20);
+  
+  const location = useLocation();
+  const searchQuery  = location.state;
+
+
   const fetchRemarks = (jobId: string) => {
     fetch(`${REACT_APP_API_BASE_URL}/get_remark/${jobId}`)
       .then((response) => response.json())
@@ -82,11 +90,13 @@ function ScheduleGrid() {
       });
   };
 
-  const fetchData = async () => {
+  const fetchData = async (srcQuery?: any) => {
     setLoading(true);
-
+    if(!srcQuery){
+      srcQuery=""
+    }
     try {
-      const response = await fetch(`${REACT_APP_API_BASE_URL}/xml_to_json`);
+      const response = await fetch(`${REACT_APP_API_BASE_URL}/xml_to_json_merged?query=${srcQuery}&page_num=${currentPage}&page_size=${pageSize}`);
       const responseData = await response.json();
       const headerAddedData: Field[] = [
         {
@@ -102,10 +112,9 @@ function ScheduleGrid() {
           PreferredCompletion: "Completion date",
           Remarks: "Remarks",
         },
-        ...responseData,
+        ...responseData.data,
       ];
       
-
       let rowIdStart = 0;
 
       for (let index = 0; index < headerAddedData.length; index++) {
@@ -174,13 +183,13 @@ function ScheduleGrid() {
 
   React.useEffect(() => {
     // Initial data fetch when the component mounts
-    fetchData();
+    fetchData(searchQuery);
     // Set up an interval to fetch data every 5 minutes (300,000 milliseconds)
     const intervalId = setInterval(fetchData, 300000);
 
     // Clean up the interval when the component unmounts
     return () => clearInterval(intervalId);
-  }, []);
+  }, [searchQuery]);
 
   
   //Handle Field Text Changes
