@@ -8,6 +8,8 @@ import moment from "moment";
 import ScheduleModal from "./ScheduleModal";
 import { forEach } from "lodash";
 import { useLocation } from "react-router-dom";
+import ReactPaginate from 'react-paginate';
+import { useEffect } from "react";
 
 const { REACT_APP_API_BASE_URL } = process.env;
 
@@ -70,10 +72,12 @@ function ScheduleGrid() {
 
   const [currentPage, setCurrentPage] = React.useState(1);
   const [pageSize, setPageSize] = React.useState(20);
+  const [totalItems, setTotalItems] = React.useState(0);
   
   const location = useLocation();
   const searchQuery  = location.state;
 
+  console.log("Test");
 
   const fetchRemarks = (jobId: string) => {
     fetch(`${REACT_APP_API_BASE_URL}/get_remark/${jobId}`)
@@ -98,6 +102,7 @@ function ScheduleGrid() {
     try {
       const response = await fetch(`${REACT_APP_API_BASE_URL}/xml_to_json_merged?query=${srcQuery}&page_num=${currentPage}&page_size=${pageSize}`);
       const responseData = await response.json();
+      
       const headerAddedData: Field[] = [
         {
           RowID: "Row ID",
@@ -161,7 +166,7 @@ function ScheduleGrid() {
 
       setData(headerAddedData);
       setLoading(false);
-
+      setTotalItems(responseData.total_items);
       // headerAddedData.sort((a, b) => {
       //   const noDate = moment(8640000000000000);
       //   const dateA = a.PreferredCompletion
@@ -184,12 +189,14 @@ function ScheduleGrid() {
   React.useEffect(() => {
     // Initial data fetch when the component mounts
     fetchData(searchQuery);
+
     // Set up an interval to fetch data every 5 minutes (300,000 milliseconds)
     const intervalId = setInterval(fetchData, 300000);
-
+    
     // Clean up the interval when the component unmounts
     return () => clearInterval(intervalId);
-  }, [searchQuery]);
+
+  }, [searchQuery,currentPage]);
 
   
   //Handle Field Text Changes
@@ -326,7 +333,6 @@ function ScheduleGrid() {
     }
     
   }, [data, loading]);
-  console.log(columns)
 
   const handleColumnResize = (ci: Id, width: number) => {
     setColumns((prevColumns) => {
@@ -339,6 +345,12 @@ function ScheduleGrid() {
       }
       return prevColumns;
     });
+  }
+
+  const handlePageClick = (pageData: any) => {
+    let cPage = pageData.selected + 1;
+    setCurrentPage(cPage);
+
   }
 
   return (
@@ -408,6 +420,25 @@ function ScheduleGrid() {
                       />
                     </div>
                   </div>
+                  <ReactPaginate
+                    previousLabel={"previous"}
+                    nextLabel={"next"}
+                    breakLabel={"..."}
+                    pageCount={Math.ceil(totalItems/pageSize)}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={3}
+                    onPageChange={handlePageClick}
+                    containerClassName={"pagination justify-content-center"}
+                    pageClassName={"page-item"}
+                    pageLinkClassName={"page-link"}
+                    previousClassName={"page-item"}
+                    previousLinkClassName={"page-link"}
+                    nextClassName={"page-item"}
+                    nextLinkClassName={"page-link"}
+                    breakClassName={"page-item"}
+                    breakLinkClassName={"page-link"}
+                    activeClassName={"active"}
+                  />
                 </div>
               </div>
               {modalShow && dataItemIndex !== undefined && (
