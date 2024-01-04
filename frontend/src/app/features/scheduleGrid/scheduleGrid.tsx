@@ -335,7 +335,13 @@ function ScheduleGrid() {
   return (
     <div>
       <div className="myGrid">
-        <div className="d-flex align-items-center justify-content-between">
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <>
+            {isBigScreen ? (
+              <>
+                <div className="d-flex align-items-center justify-content-between">
           <h1>Crusader Schedule Data</h1>
           <button className="btn blue-btn d-flex align-items-center justify-content-between gap-2" onClick={handleAddRow}>
             <svg className="plus-icon" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="24" height="24" viewBox="0 0 128 128">
@@ -344,12 +350,6 @@ function ScheduleGrid() {
             <span>Add New</span>
           </button>
         </div>
-        {loading ? (
-          <p>Loading...</p>
-        ) : (
-          <>
-            {isBigScreen ? (
-              <>
                 <div className="row">
                 <div className="col-12">
                   <div className="schedule__data-grid">
