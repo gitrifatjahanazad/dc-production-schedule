@@ -86,7 +86,7 @@ function ScheduleGrid() {
     setLoading(true);
 
     try {
-      const response = await fetch(`${REACT_APP_API_BASE_URL}/xml_to_json`);
+      const response = await fetch(`${REACT_APP_API_BASE_URL}/xml_to_json_merged`);
       const responseData = await response.json();
       const headerAddedData: Field[] = [
         {
