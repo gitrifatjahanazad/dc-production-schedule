@@ -46,6 +46,7 @@ from service.merge_xml_as_json.convert_xml_to_json import xml_to_json
 from service.merge_xml_as_json.merge_xml_files import merge_xml_files
 from service.merge_xml_as_json.replace_xml_attribute import replace_attribute
 from service.merge_xml_as_json.sort_all_files import get_latest_xml_files
+from service.merge_xml_as_json.transform_merged_data import transform_data
 from service.services import (
     get_todays_date,
     get_previous_dates,
@@ -233,13 +234,16 @@ async def convert_latest_xml_to_json_merged():
 
     converted_json = xml_to_json(merged_response_productionno)
 
-    return converted_json
+    existing_data = converted_json.get("MergedResponse", {}).get("ScheduleOptionsVariations", [])
+    transformed_data = transform_data(existing_data)
+
+    return transformed_data
 
 # Register to be called when the program is exiting
 atexit.register(exit_handler)
 
-# scheduler_thread = Thread(target=run_scheduler)
-# scheduler_thread.start()
+scheduler_thread = Thread(target=run_scheduler)
+scheduler_thread.start()
 
 
 @app.post("/save_remark")
