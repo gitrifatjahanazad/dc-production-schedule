@@ -18,6 +18,17 @@ function DownloadFiles() {
     }
   };
 
+  const downloadFile = (fileUrl, fileName) => {
+    const link = document.createElement("a");
+    link.href = `${REACT_APP_API_BASE_URL}/outputDirectory/${fileName}`;
+    link.download = fileName;
+
+    document.body.appendChild(link);
+    link.click();
+
+    document.body.removeChild(link);
+  };
+
   useEffect(() => {
     downloadFolder();
   }, []); // Fetch files when the component mounts
@@ -27,8 +38,14 @@ function DownloadFiles() {
       <h1>File List</h1>
       {files.map((file, index) => (
         <div key={index}>
-          <a href={file.url} download={file.name}>
-            {file.name}
+          <a
+            href={file.url}
+            onClick={(e) => {
+              e.preventDefault();
+              downloadFile(file.url, file.name);
+            }}
+          >
+            Download {file.name}
           </a>
         </div>
       ))}
