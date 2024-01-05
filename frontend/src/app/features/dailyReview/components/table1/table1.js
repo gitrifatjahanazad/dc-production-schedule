@@ -27,7 +27,10 @@ export default function Table1() {
         return response.json();
       })
       .then((responseData) => {
-        if (Array.isArray(responseData.response_content)) {
+        if (
+          Array.isArray(responseData.response_content) &&
+          responseData.response_content.length > 0
+        ) {
           const newIntervalValue = responseData.interval;
           setIntervalValue(newIntervalValue);
 
@@ -47,7 +50,9 @@ export default function Table1() {
           const groupedData = groupRowsByStation(filteredContent);
           setResponseContent(groupedData);
         } else {
-          console.error("Invalid response format:", responseData);
+          // Handle the case where response_content is empty or not an array
+          console.error("Invalid response format or empty data:", responseData);
+          setResponseContent([]);
         }
       })
       .catch((error) => {
@@ -91,7 +96,7 @@ export default function Table1() {
       >
         <Header />
       </Typography>
-      {Object.keys(responseContent).length > 0 && (
+      {Object.keys(responseContent).length > 0 ? (
         <TableContainer component={Paper} style={{ marginTop: "8px" }}>
           <Table size="small">
             <TableHead>
@@ -178,6 +183,13 @@ export default function Table1() {
             </TableBody>
           </Table>
         </TableContainer>
+      ) : (
+        <Typography
+          variant="body1"
+          style={{ marginTop: "8px", fontFamily: "Arial" }}
+        >
+          Loading...
+        </Typography>
       )}
     </Container>
   );
