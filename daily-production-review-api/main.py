@@ -214,13 +214,13 @@ async def convert_latest_xml_to_json_merged(query: str | None = None, page_num: 
         # output = os.path.join(folder_path, "merged.xml")
 
         # Parse XML content from the files
-        with open(schedule_options_file, 'r') as file:
+        with open(schedule_options_file, 'r', encoding="cp1252") as file:
             root2 = ET.fromstring(file.read())
 
-        with open(schedule_variations_file, 'r') as file:
+        with open(schedule_variations_file, 'r', encoding="cp1252") as file:
             root3 = ET.fromstring(file.read())
 
-        with open(api_response_file, 'r') as file:
+        with open(api_response_file, 'r', encoding="cp1252") as file:
             root1 = ET.fromstring(file.read())
 
         # Replace JobID with jobiD in api_respnse
