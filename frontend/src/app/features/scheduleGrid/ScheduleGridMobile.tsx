@@ -11,6 +11,9 @@ function ScheduleGridMobile({data}: any){
       }
     return(
         <>
+            <div className="d-flex align-items-center justify-content-between">
+                <h1>Crusader Schedule Data</h1>
+            </div>
             {data.slice(1).map((item:any, index:number) => {
                 return (
                     <div className="schedule__data--mobile mb-3" key={index} >

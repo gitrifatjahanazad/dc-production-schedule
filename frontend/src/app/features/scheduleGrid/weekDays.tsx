@@ -16,7 +16,7 @@ function WeekDays() {
   const [columns, setColumns] = React.useState<Column[]>(primaryColumns());
 
   const getColumns = (): Column[] => [
-    { columnId: "weekNumber", width: 120},
+    { columnId: "weekNumber", width: 130},
     { columnId: "date", width: 240}
   ];
   
@@ -72,8 +72,8 @@ function WeekDays() {
   }, []);
 
   return (
-    <div>
-      <ReactGrid 
+    <div className="schedule__calender-grid">
+      <ReactGrid  stickyTopRows={1}
         rows={rows} 
         columns={columns} 
       />
