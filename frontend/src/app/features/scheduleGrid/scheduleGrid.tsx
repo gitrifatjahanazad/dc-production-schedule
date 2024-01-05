@@ -77,7 +77,7 @@ function ScheduleGrid() {
   
   const location = useLocation();
   const searchQuery  = location.state;
-
+  console.log('grid', searchQuery);
   const fetchRemarks = (jobId: string) => {
     fetch(`${REACT_APP_API_BASE_URL}/get_remark/${jobId}`)
       .then((response) => response.json())
@@ -93,112 +93,100 @@ function ScheduleGrid() {
       });
   };
 
-  const fetchData = async (srcQuery?: any) => {
-    setLoading(true);
-    if(!srcQuery){
-      srcQuery=""
-    }
-    try {
-      const configResponse = await fetch(`${REACT_APP_API_BASE_URL}/get_configuration_info`);
-      const configResponseData = await configResponse.json();
-      setPageSize(configResponseData["Items per page"]);
-      const response = await fetch(`${REACT_APP_API_BASE_URL}/xml_to_json_merged?query=${srcQuery}&page_num=${currentPage}&page_size=${pageSize}`);
-      const responseData = await response.json();
-      
-      const headerAddedData: Field[] = [
-        {
-          RowID: "Row ID",
-          WeekNumber: "Week Number",
-          ProductionStartDate: "Production Start Date",
-          Serial: "Chassis number",
-          JobContactLastName: "Customer Name",
-          Model: "Model",
-          ProductionValue: "Production Value",
-          Dealer: "Dealer",
-          Status: "Status",
-          PreferredCompletion: "Completion date",
-          Remarks: "Remarks",
-        },
-        ...responseData.data,
-      ];
-      
-      let rowIdStart = 0;
-
-      for (let index = 0; index < headerAddedData.length; index++) {
-        const field = headerAddedData[index];
-
-        if (field.JobID) {
-          const jobId = field.JobID;
-
-          // Fetch remarks for the current job
-          // await fetchRemarks(jobId);
-        }
-
-        if (index !== 0) {
-          field.RowID = rowIdStart.toString();
-          field.WeekNumber = getWeekNumber(
-            new Date(
-              moment("2023-01-01").add(rowIdStart, "days").format("YYYY-MM-DD")
-            )
-          );
-          field.PreferredCompletion = moment(field.PreferredCompletion).format(
-            "DD/MM/yyyy"
-          );
-          field.ProductionStartDate = moment("2023-01-01")
-            .add(rowIdStart, "days")
-            .format("dddd, MMMM DD yyyy");
-          field.ProductionValue = "";
-          field.Remarks = "";
-          rowIdStart += 1;
-        }
-
-        headerAddedData[index] = field;
-      }
-
-      headerAddedData.sort((a, b) => {
-        const noDate = moment(8640000000000000);
-        const dateA = a.PreferredCompletion
-          ? moment(a.PreferredCompletion, "DD/MM/yyyy")
-          : noDate;
-        const dateB = b.PreferredCompletion
-          ? moment(b.PreferredCompletion, "DD/MM/yyyy")
-          : noDate;
-        return dateA.diff(dateB);
-      });
-
-      setData(headerAddedData);
-      setLoading(false);
-      setTotalItems(responseData.total_items);
-      // headerAddedData.sort((a, b) => {
-      //   const noDate = moment(8640000000000000);
-      //   const dateA = a.PreferredCompletion
-      //     ? moment(a.PreferredCompletion, "DD/MM/yyyy")
-      //     : noDate;
-      //   const dateB = b.PreferredCompletion
-      //     ? moment(b.PreferredCompletion, "DD/MM/yyyy")
-      //     : noDate;
-      //   return dateA.diff(dateB);
-      // });
-
-      // setData(headerAddedData);
-      // setLoading(false);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      setLoading(false);
-    }
-  };
 
   React.useEffect(() => {
     // Initial data fetch when the component mounts
-    fetchData(searchQuery);
+    // console.log(searchQuery);
+    const fetchData = async (srcQuery?: any) => {
+      setLoading(true);
+      // if(!srcQuery){
+      //   srcQuery=""
+      // }
+      const query = !srcQuery ? `page_num=${currentPage}&page_size=${pageSize}` : `query=${srcQuery}&page_num=${currentPage}&page_size=${pageSize}`;
 
+      try {
+        const configResponse = await fetch(`${REACT_APP_API_BASE_URL}/get_configuration_info`);
+        const configResponseData = await configResponse.json();
+        setPageSize(configResponseData["Items per page"]);
+        const response = await fetch(`${REACT_APP_API_BASE_URL}/xml_to_json_merged?${query}`);
+        const responseData = await response.json();
+        const headerAddedData: Field[] = [
+          {
+            RowID: "Row ID",
+            WeekNumber: "Week Number",
+            ProductionStartDate: "Production Start Date",
+            Serial: "Chassis number",
+            JobContactLastName: "Customer Name",
+            Model: "Model",
+            ProductionValue: "Production Value",
+            Dealer: "Dealer",
+            Status: "Status",
+            PreferredCompletion: "Completion date",
+            Remarks: "Remarks",
+          },
+          ...responseData.data,
+        ];
+        
+        let rowIdStart = 0;
+  
+        for (let index = 0; index < headerAddedData.length; index++) {
+          const field = headerAddedData[index];
+  
+          if (field.JobID) {
+            const jobId = field.JobID;
+  
+            // Fetch remarks for the current job
+            // await fetchRemarks(jobId);
+          }
+  
+          if (index !== 0) {
+            field.RowID = rowIdStart.toString();
+            field.WeekNumber = getWeekNumber(
+              new Date(
+                moment("2023-01-01").add(rowIdStart, "days").format("YYYY-MM-DD")
+              )
+            );
+            field.PreferredCompletion = moment(field.PreferredCompletion).format(
+              "DD/MM/yyyy"
+            );
+            field.ProductionStartDate = moment("2023-01-01")
+              .add(rowIdStart, "days")
+              .format("dddd, MMMM DD yyyy");
+            field.ProductionValue = "";
+            field.Remarks = "";
+            rowIdStart += 1;
+          }
+  
+          headerAddedData[index] = field;
+        }
+  
+        headerAddedData.sort((a, b) => {
+          const noDate = moment(8640000000000000);
+          const dateA = a.PreferredCompletion
+            ? moment(a.PreferredCompletion, "DD/MM/yyyy")
+            : noDate;
+          const dateB = b.PreferredCompletion
+            ? moment(b.PreferredCompletion, "DD/MM/yyyy")
+            : noDate;
+          return dateA.diff(dateB);
+        });
+  
+        setData(headerAddedData);
+        setLoading(false);
+        setTotalItems(responseData.total_items);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setLoading(false);
+      }
+    };
+    fetchData(searchQuery);
     // Set up an interval to fetch data every 5 minutes (300,000 milliseconds)
     const intervalId = setInterval(fetchData, 300000);
     
     // Clean up the interval when the component unmounts
     return () => clearInterval(intervalId);
 
-  }, [searchQuery,currentPage,pageSize]);
+  }, [pageSize, searchQuery, currentPage]);
 
   
   //Handle Field Text Changes
@@ -265,7 +253,7 @@ function ScheduleGrid() {
     });
   }
   const handleCanReorderRows = (targetRowId:Id, rowIds:Id[]): boolean => {
-    return targetRowId !== 'header';
+    return targetRowId !== 'Row ID';
   }
 
   //Add New Row
@@ -353,6 +341,7 @@ function ScheduleGrid() {
     setCurrentPage(cPage);
 
   }
+  // console.log('test');
 
   return (
     <div>
