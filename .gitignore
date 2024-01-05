@@ -238,3 +238,5 @@ OrderProcessingSystem/order-processing-system-app/yarn.lock
 /PartReorderingSystem/src/PartReorderingSystem.Infrastructure/obj
 /PartReorderingSystem/src/PartReorderingSystem.Infrastructure/bin/Release/net6.0
 /PartReorderingSystem/src/PartReorderingSystem.Core/bin/Release/net6.0
+*.pyc
+*.pyc
