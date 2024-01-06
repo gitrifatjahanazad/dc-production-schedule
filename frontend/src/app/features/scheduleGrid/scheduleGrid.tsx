@@ -102,7 +102,7 @@ function ScheduleGrid() {
       // if(!srcQuery){
       //   srcQuery=""
       // }
-      const query = !srcQuery ? `page_num=${currentPage}&page_size=${pageSize}` : `query=${srcQuery}&page_num=${currentPage}&page_size=${pageSize}`;
+      const query = !srcQuery ? `page_num=${currentPage}&page_size=${pageSize}` : `query=${srcQuery}`;
 
       try {
         const configResponse = await fetch(`${REACT_APP_API_BASE_URL}/get_configuration_info`);
