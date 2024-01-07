@@ -17,8 +17,8 @@ const { REACT_APP_API_BASE_URL } = process.env;
 interface Field {
   RowID: string;
   JobID: string;
-  ProductionStartDate: string;
-  WeekNumber: string;
+  // ProductionStartDate: string;
+  // WeekNumber: string;
   JobContactLastName: string;
   Model: string;
   Serial: string;
@@ -50,8 +50,8 @@ const reorderArray = <T extends {}>(arr: T[], idxs: number[], to: number) => {
   return [...leftSide, ...movedElements, ...rightSide];
 }
 const primaryColumns = (): Column[] => [
-  { columnId: "WeekNumber", width: 400, resizable: true },
-  { columnId: "ProductionStartDate", width: 400, resizable: true },
+  // { columnId: "WeekNumber", width: 400, resizable: true },
+  // { columnId: "ProductionStartDate", width: 400, resizable: true },
   { columnId: "Serial", width: 400, resizable: true },
   { columnId: "JobContactLastName", width: 400, resizable: true },
   { columnId: "Model", width: 400, resizable: true },
@@ -60,6 +60,7 @@ const primaryColumns = (): Column[] => [
   { columnId: "Status", width: 400, resizable: true },
   { columnId: "PreferredCompletion", width: 400, resizable: true },
   { columnId: "Remarks", width: 400, resizable: true },
+  { columnId: "JobId", width: 400, resizable: true },
 ];
 
 
@@ -70,14 +71,16 @@ function ScheduleGrid() {
   const [modalShow, setModalShow] = React.useState(false);
   const [dataItemIndex, setDataItemIndex] = React.useState<number | undefined>();
   const [columns, setColumns] = React.useState<Column[]>(primaryColumns());
+  const [selectedPDSData, setSelectedPDSData] = React.useState<any>();
 
   const [currentPage, setCurrentPage] = React.useState(1);
   const [pageSize, setPageSize] = React.useState(20);
   const [totalItems, setTotalItems] = React.useState(0);
+  const [configData, setConfigData] = React.useState<any>();
   
   const location = useLocation();
   const searchQuery  = location.state;
-  console.log('grid', searchQuery);
+
   const fetchRemarks = (jobId: string) => {
     fetch(`${REACT_APP_API_BASE_URL}/get_remark/${jobId}`)
       .then((response) => response.json())
@@ -93,7 +96,6 @@ function ScheduleGrid() {
       });
   };
 
-
   React.useEffect(() => {
     // Initial data fetch when the component mounts
     // console.log(searchQuery);
@@ -108,13 +110,15 @@ function ScheduleGrid() {
         const configResponse = await fetch(`${REACT_APP_API_BASE_URL}/get_configuration_info`);
         const configResponseData = await configResponse.json();
         setPageSize(configResponseData["Items per page"]);
+        setConfigData(configResponseData);
+        console.log(configData);
         const response = await fetch(`${REACT_APP_API_BASE_URL}/xml_to_json_merged?${query}`);
         const responseData = await response.json();
         const headerAddedData: Field[] = [
           {
             RowID: "Row ID",
-            WeekNumber: "Week Number",
-            ProductionStartDate: "Production Start Date",
+            // WeekNumber: "Week Number",
+            // ProductionStartDate: "Production Start Date",
             Serial: "Chassis number",
             JobContactLastName: "Customer Name",
             Model: "Model",
@@ -123,6 +127,7 @@ function ScheduleGrid() {
             Status: "Status",
             PreferredCompletion: "Completion date",
             Remarks: "Remarks",
+            JobID: "Job ID"
           },
           ...responseData.data,
         ];
@@ -141,17 +146,17 @@ function ScheduleGrid() {
   
           if (index !== 0) {
             field.RowID = rowIdStart.toString();
-            field.WeekNumber = getWeekNumber(
-              new Date(
-                moment("2023-01-01").add(rowIdStart, "days").format("YYYY-MM-DD")
-              )
-            );
+            // field.WeekNumber = getWeekNumber(
+            //   new Date(
+            //     moment("2023-01-01").add(rowIdStart, "days").format("YYYY-MM-DD")
+            //   )
+            // );
             field.PreferredCompletion = moment(field.PreferredCompletion).format(
               "DD/MM/yyyy"
             );
-            field.ProductionStartDate = moment("2023-01-01")
-              .add(rowIdStart, "days")
-              .format("dddd, MMMM DD yyyy");
+            // field.ProductionStartDate = moment("2023-01-01")
+            //   .add(rowIdStart, "days")
+            //   .format("dddd, MMMM DD yyyy");
             field.ProductionValue = "";
             field.Remarks = "";
             rowIdStart += 1;
@@ -188,7 +193,6 @@ function ScheduleGrid() {
 
   }, [pageSize, searchQuery, currentPage]);
 
-  
   //Handle Field Text Changes
   const handleChanges = (changes: CellChange[]) => {
     setData((prevData) =>
@@ -239,9 +243,15 @@ function ScheduleGrid() {
   };
   //Handle Open Modal
   const handleOpenModal = (selected:any) => {
-    if(selected[0].last.row.cells[0].text && selected[0].columns[0].columnId !== 'Remarks'){
-      setModalShow(true);
+    console.log(selected);
+    setSelectedPDSData(selected);
+    console.log("dataitem",selectedPDSData)
+    if(selected[0].last.row.cells[8].text && selected[0].columns[0].columnId !== 'JobId'){
+      // setModalShow(true);
+      console.log(selected[0].last.row.cells[8].text)
+      setSelectedPDSData(selected[0].last.row.cells[8].text);
       setDataItemIndex(selected[0].rows[0].idx);
+      
     }
   }
   // Handle Rows Dragging
@@ -279,8 +289,8 @@ function ScheduleGrid() {
     const newRow: Field = {
       RowID: getNewRowId(),
       JobID: '',
-      ProductionStartDate: '',
-      WeekNumber: '',
+      // ProductionStartDate: '',
+      // WeekNumber: '',
       JobContactLastName: '',
       Model: '',
       Serial: '',
@@ -305,18 +315,31 @@ function ScheduleGrid() {
   //Handle Column Resizing
   React.useEffect(() => {
     if(!loading){
-      const getColumns = (data: Field[]): Column[] =>  {
-        if (data && data.length > 0 ){
-          return Object.keys(data[0]).filter((key) => key !== "RowID").map((key) => ({
-            columnId: key,
-            width: 400,
-            resizable: true
-          }));
-        }
-        else {
-          return primaryColumns();
-        }
-      }
+      // const getColumns = (data: Field[]): Column[] =>  {
+      //   if (data && data.length > 0 ){
+      //     return Object.keys(data[0]).filter((key) => key !== "RowID").map((key) => ({
+      //       columnId: key,
+      //       width: 200,
+      //       resizable: false
+      //     }));
+      //   }
+      //   else {
+      //     return primaryColumns();
+      //   }
+      // }
+      const getColumns = (data: Field[]): Column[] => [
+        // { columnId: "WeekNumber", width: 125, resizable: true },
+        // { columnId: "ProductionStartDate", width: 240, resizable: true },
+        { columnId: "Serial", width: 140, resizable: true },
+        { columnId: "JobContactLastName", width: 140, resizable: true },
+        { columnId: "Model", width: 320, resizable: true },
+        { columnId: "ProductionValue", width: 150, resizable: true },
+        { columnId: "Dealer", width: 200, resizable: true },
+        { columnId: "Status", width: 200, resizable: true },
+        { columnId: "PreferredCompletion", width: 150, resizable: true },
+        { columnId: "Remarks", width: 100, resizable: true },
+        { columnId: "JobId", width: 100, resizable: true},
+      ]
       const columns = getColumns(data);
       setColumns(columns);
     }
@@ -336,12 +359,15 @@ function ScheduleGrid() {
     });
   }
 
+  const handleRowSelect = (selected:any) => {
+    // console.log("selected",selected);
+  }
+
   const handlePageClick = (pageData: any) => {
     let cPage = pageData.selected + 1;
     setCurrentPage(cPage);
 
   }
-  // console.log('test');
 
   return (
     <div>
@@ -364,7 +390,7 @@ function ScheduleGrid() {
               </div>
                 <div className="row">
                   <div className="col-3">
-                    <WeekDays />
+                    <WeekDays configData={configData} onRowSelect={handleRowSelect} />
                   </div>
                   <div className="col-9">
                     <div className="schedule__data-grid">
@@ -375,19 +401,25 @@ function ScheduleGrid() {
                             reorderable: true,
                             cells:
                             [
-                              { type: "text", text: item.WeekNumber, nonEditable: isNewRow(item) ? false : true },
-                              {
-                                type: "text",
-                                text: item.ProductionStartDate,
-                                nonEditable: isNewRow(item) ? false : true,
-                              },
-                              { type: "text", text: item.Serial, nonEditable: isNewRow(item) ? false : true },
+                              // { type: "text", text: item.WeekNumber, nonEditable: isNewRow(item) ? false : true },
+                              // {
+                              //   type: "text",
+                              //   text: item.ProductionStartDate,
+                              //   nonEditable: isNewRow(item) ? false : true,
+                              // },
+                              { 
+                                type: "text", 
+                                text: item.Serial, 
+                                nonEditable: isNewRow(item) ? false : true },
                               {
                                 type: "text",
                                 text: item.JobContactLastName,
                                 nonEditable: isNewRow(item) ? false : true,
                               },
-                              { type: "text", text: item.Model, nonEditable: isNewRow(item) ? false : true },
+                              { 
+                                type: "text", 
+                                text: item.Model, 
+                                nonEditable: isNewRow(item) ? false : true },
                               {
                                 type: "text",
                                 text: item.ProductionValue,
@@ -401,6 +433,7 @@ function ScheduleGrid() {
                                 nonEditable: isNewRow(item) ? false : true,
                               },
                               { type: "text", text: item.Remarks, nonEditable: false },
+                              { type: "text", text: item.JobID, className: "d-none" },
                             ],
                           }))}
                           columns={columns}
