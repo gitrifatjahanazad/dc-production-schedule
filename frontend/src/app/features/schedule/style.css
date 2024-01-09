@@ -1,0 +1,156 @@
+.schedule__data-grid_user {
+  display: inline-block;
+  max-height: calc(100vh - 12rem);
+  max-width: 100%;
+  /* overflow: scroll;
+  scrollbar-width: auto;
+  scrollbar-color: #90a4ae #cfd8dc; */
+}
+
+.schedule__data-grid_user {
+  display: inline-block;
+  max-height: calc(100vh - 9rem);
+  max-width: 100%;
+  /* overflow: scroll;
+  scrollbar-width: auto;
+  scrollbar-color: #90a4ae #cfd8dc */
+}
+.reactgrid-content .rg-pane.rg-pane-top{
+  height: 130px !important;
+}
+.rg-pane.rg-pane-top .rg-text-cell{
+  writing-mode: vertical-rl; 
+  transform: rotate(180deg);
+  text-wrap: wrap;
+  height: 130px !important;
+  padding: 15px;
+}
+.rg-cell.rg-header-cell {
+  background-color: rgb(60 61 84) !important;
+  color: white !important;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.rg-pane.rg-pane-top .rg-text-cell {
+  background-color: rgb(59, 17, 80) !important;
+  color: white !important;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.rg-cell {
+  padding-left: 10px !important;
+}
+
+.reactgrid-content .rg-pane .rg-cell.rg-number-cell {
+  justify-content: flex-start;
+}
+
+.rg-celleditor input {
+  border: 0;
+}
+
+:is(.schedule__calender-grid, .schedule__data-grid)::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+:is(.schedule__calender-grid, .schedule__data-grid)::-webkit-scrollbar-track {
+  background: #cfd8dc;
+  border-radius: 5px;
+}
+
+:is(.schedule__calender-grid, .schedule__data-grid)::-webkit-scrollbar-thumb {
+  background-color: #90a4ae;
+  border-radius: 5px;
+  border: 2px solid #cfd8dc;
+}
+
+.plus-icon {
+  fill: #fff;
+}
+
+/* For Mobile Version */
+.schedule__data--mobile {
+  border-radius: 5px;
+  border: 1px solid #b1c9e0;
+  padding: 8px;
+}
+
+.schedule__data--mobile:is( :active,
+  :hover,
+  :visited,
+  :focus,
+  :focus-within,
+  :focus-visible) {
+  background-color: #b1c9e0;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+}
+
+.schedule__data__field {
+  overflow: hidden;
+  white-space: wrap;
+}
+
+.rtl {
+  direction: rtl;
+}
+
+.textarea--remarks {
+  margin-bottom: 16px;
+  resize: none;
+}
+
+textarea {
+  font-size: 12px !important;
+}
+
+.assign__dropdown {
+  border: 1px solid #3b1150 !important;
+  box-shadow: 0px 6px 16px 0px rgba(0, 0, 0, 0.06);
+  width: 200px;
+}
+
+.assign__dropdown input {
+  padding-left: 40px;
+  font-size: 12px;
+}
+
+.assign__search-box {
+  outline: none;
+  border-color: #3b1150 !important;
+  border-style: solid;
+  border-width: 0px 0px 1px 0px !important;
+}
+
+.assign__search-box__icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translate(0%, -50%);
+}
+
+.assign__list-item:is(:hover, :focus, :active, :focus-visible, :focus-within) {
+  background: #b1c9e0;
+}
+
+img.assign__image {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+/* Pagination */
+/* .page-link.active,
+.active>.page-link {
+  background-color: #3b1150 !important;
+  border-color: #3b1150 !important;
+} */
+
+@media only screen and (max-width: 992px) {
+
+  textarea.form-control {
+    width: 80% !important;
+  }
+}

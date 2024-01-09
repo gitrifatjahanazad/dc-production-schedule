@@ -35,6 +35,7 @@ from pydantic import BaseModel, ValidationError, json
 import xml.etree.ElementTree as ET
 
 from routes.route import router
+from service.database_service.retrive_data_by_date import get_excel_fields_data
 from service.file_reader.save_in_text_file import UpdateConfigurationInfo, formatText
 
 from service.file_reader.text_file_service import (
@@ -235,6 +236,7 @@ async def convert_latest_xml_to_json_merged(query: str | None = None, page_num: 
         converted_json = xml_to_json(merged_response_productionno)
 
         existing_data = converted_json.get("MergedResponse", {}).get("ScheduleOptionsVariations", [])
+        print(existing_data)
 
         transformed_data = transform_data(existing_data)
 
@@ -257,6 +259,69 @@ async def convert_latest_xml_to_json_merged(query: str | None = None, page_num: 
         paginated_data = filtered_data[start_index:end_index]
 
         return JSONResponse(content={"total_items": total_items, "page_num": page_num, "page_size": page_size, "data": paginated_data})
+
+    except Exception as e:
+        return JSONResponse(content={"error": str(e)})
+
+@app.get("/merged_data")
+async def latest__merged_data(query: str | None = None, page_num: int = 1, page_size: int = 10):
+    try:
+        folder_path = os.environ.get("XML_FOLDER_PATH", "./scheduler/scheduler_result")
+        keywords = ["api_response", "schedule_options", "schedule_variations"]
+        latest_files = get_latest_xml_files(keywords)
+
+        api_response_file = os.path.join(folder_path, latest_files.get('api_response', ''))
+        schedule_options_file = os.path.join(folder_path, latest_files.get('schedule_options', ''))
+        schedule_variations_file =  os.path.join(folder_path, latest_files.get('schedule_variations', ''))
+        # output = os.path.join(folder_path, "merged.xml")
+
+        # Parse XML content from the files
+        with open(schedule_options_file, 'r', encoding="cp1252") as file:
+            root2 = ET.fromstring(file.read())
+
+        with open(schedule_variations_file, 'r', encoding="cp1252") as file:
+            root3 = ET.fromstring(file.read())
+
+        with open(api_response_file, 'r', encoding="cp1252") as file:
+            root1 = ET.fromstring(file.read())
+
+        # Replace JobID with jobiD in api_respnse
+        root1 = replace_attribute(root1, "JobID", "jobid")
+
+        merge_based_on = "productionno"
+        merged_response_productionno = merge_xml_files(root2, root3, merge_based_on)
+
+        merge_based_on = "jobid"
+        merged_response_productionno = merge_xml_files(root1, merged_response_productionno, merge_based_on)
+
+        root = ET.fromstring(merged_response_productionno)
+        jobids = [elem.attrib.get("jobid") for elem in root.findall(".//ScheduleOptionsVariations")]
+
+        excel_file_path = os.path.join(current_directory, "Copy of Crusader Schedule -Version 6 (2).xlsx")
+
+        models_of_specific_date = get_excel_fields_data(excel_file_path, "2024 Schedule", jobids)
+
+        #search
+        filtered_data = []
+        if query:
+            for item in models_of_specific_date:
+                for value in item.values():
+                    value = value.lower()
+                    search_query = query.lower()
+                    if search_query in value:
+                        filtered_data.append(item)
+        else:
+            filtered_data = models_of_specific_date
+
+        # Pagination
+        total_items = len(filtered_data)
+        start_index = (page_num - 1) * page_size
+        end_index = start_index + page_size
+        paginated_data = filtered_data[start_index:end_index]
+
+        return JSONResponse(content={"total_items": total_items, "page_num": page_num, "page_size": page_size, "data": paginated_data})
+
+
 
     except Exception as e:
         return JSONResponse(content={"error": str(e)})

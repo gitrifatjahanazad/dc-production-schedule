@@ -12,6 +12,7 @@ import RequireAuth from "./app/authentications/RequireAuth";
 import DownloadFiles from "./app/features/dailyReview/components/downlodFiles/DownloadFiles";
 import ResponsiveForm from './app/features/scheduleGrid/ResponsiveForm';
 import ProductionForm from "./app/features/dailyReview/components/settingsTextForm/settingsForm";
+import Schedule from "./app/features/schedule/schedule";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/daily-review" element={<DailyReview></DailyReview>} />
             <Route path="/download" element={<DownloadFiles />} />
             <Route path="/ScheduleGrid" element={<ScheduleGrid></ScheduleGrid>} />
+            <Route path="/Schedule" element={<Schedule></Schedule>} />
             <Route path="/configuration" element={<ProductionForm />} />
             <Route path="/form" element={<ResponsiveForm></ResponsiveForm>} />
           </Route>

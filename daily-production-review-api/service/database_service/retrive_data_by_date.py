@@ -1,9 +1,12 @@
+
 from collections import deque
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, time, date
 from http.client import HTTPException
 
 import dateutil
+import openpyxl
 import pymongo
+from pandas.io import json
 
 from config.database import collection_name, db
 from service.file_reader.read_excel_file import get_fields_for_a_date
@@ -157,6 +160,59 @@ def get_first_id_for_date(date_str):
         return {"error": str(e)}
 
 
+def excel_date_to_iso(excel_date):
+    base_date = datetime(1899, 12, 30)
+    days = int(excel_date)
+    return (base_date + timedelta(days=days)).isoformat()
+
+
+def convert_to_iso(value, field_name):
+
+    if value is None or value == 0:
+        return ""
+    elif isinstance(value, datetime):
+        if value.time() == time(0, 0):
+            iso_date = value.date().isoformat()  # Only date, no time
+        else:
+            iso_date = value.isoformat()
+        if field_name is not "prod_start_date":
+            return iso_date
+        else:
+            day_of_week = value.strftime("%A")  # Full weekday name
+            return f"{iso_date} ({day_of_week})"
+    else:
+        return str(value)
+
+
+def get_excel_fields_data(excel_file_path, sheet_name, jobIds):
+    workbook = openpyxl.load_workbook(excel_file_path, data_only=True)
+    sheet = workbook[sheet_name]
+
+    data_list = []
+    keys = ['week_no', 'prod_start_date', 'order_number', 'order_link', 'data_link', 'chassis_no', 'customer_name', 'model', 'prod_value', 'dealer', 'completion_date', 'status', 'notes', 'total_open', '', 'chassis_notes', 'electrical_system', 'updagrade_pack', '', '', '', '', '', '', 'drawn_by', 'drawn_date']
+
+    for value in sheet.iter_rows(
+        min_row=1, max_row=400, min_col=1, max_col=26,
+        values_only=True):
+        # for jid in jobIds:
+        #     if int(jid) in value:
+        #         print(value)
+        #         row = list(value)  # Convert tuple to list to modify the date value
+        #         if value[1]:
+        #             value[1] = excel_date_to_iso(value[1])
+        #         data_list.append(dict(zip(keys, value)))
+
+        if any(int(jid) in value for jid in jobIds):
+            # formatted_row = [convert_to_iso(cell) for cell in value]
+            # formatted_row = [convert_to_iso(cell) if cell is not None else "" for cell in value]
+            formatted_row = [convert_to_iso(cell, keys[i]) if cell is not None else "" for i, cell in enumerate(value)]
+            data_list.append(dict(zip(keys, formatted_row)))
+    
+    json_data = json.dumps(data_list)
+    data = json.loads(json_data)
+    return data
+
+
 def create_queue_of_records_with_ids_less_than(given_id, limit=16):
     try:
         # Query for records with IDs less than the given ID
@@ -181,6 +237,7 @@ def create_queue_of_records_with_ids_less_than(given_id, limit=16):
         return record_queue
     except Exception as e:
         return {"error": str(e)}
+
 
 def get_jobs_before_date(date):
     # Filter the jobs to get only the ones before the given date
