@@ -74,12 +74,12 @@ const Layout = () => {
                 </li>
                 <li className="nav-item">
                   <NavLink to="/ScheduleGrid" className="nav-link">
-                    Schedule Grid
+                    Admin Schedule
                   </NavLink>
                 </li>
                 <li className="nav-item">
-                  <NavLink to="/form" className="nav-link">
-                    Form
+                  <NavLink to="/schedule" className="nav-link">
+                    Schedule
                   </NavLink>
                 </li>
                 <li className="nav-item dropdown d-none d-lg-block">
